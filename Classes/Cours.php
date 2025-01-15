@@ -4,14 +4,14 @@ namespace Classes;
 
 use Classes\DatabaseConnection;
 
-class Cours
+abstract class Cours
 {
-    private $idCours;
-    private $titre;
-    private $description;
-    private $contenu;
-    private $categorie_id;
-    private $enseignant_id;
+    protected $idCours;
+    protected $titre;
+    protected $description;
+    protected $contenu;
+    protected $categorie_id;
+    protected $enseignant_id;
 
     public function __construct($titre, $description, $contenu = null, $categorie_id = null, $enseignant_id)
     {
