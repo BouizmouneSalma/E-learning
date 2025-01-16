@@ -6,42 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home </title>
     <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png" />
-    <link rel="manifest" href="assets/images/favicons/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="../assets/images/favicons/site.webmanifest" />
     <meta name="description" content="Crsine HTML Template For Car Services" />
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
-    <link rel="stylesheet" href="assets/vendors/animate/custom-animate.css" />
-    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
-    <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
-    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.min.css" />
-    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.pips.css" />
-    <link rel="stylesheet" href="assets/vendors/odometer/odometer.min.css" />
-    <link rel="stylesheet" href="assets/vendors/swiper/swiper.min.css" />
-    <link rel="stylesheet" href="assets/vendors/icomoon-icons/style.css">
-    <link rel="stylesheet" href="assets/vendors/tiny-slider/tiny-slider.min.css" />
-    <link rel="stylesheet" href="assets/vendors/reey-font/stylesheet.css" />
-    <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="assets/vendors/twentytwenty/twentytwenty.css" />
+    <link rel="stylesheet" href="../assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/animate/animate.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/animate/custom-animate.css" />
+    <link rel="stylesheet" href="../assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="../assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="../assets/vendors/nouislider/nouislider.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/nouislider/nouislider.pips.css" />
+    <link rel="stylesheet" href="../assets/vendors/odometer/odometer.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/swiper/swiper.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/icomoon-icons/style.css">
+    <link rel="stylesheet" href="../assets/vendors/tiny-slider/tiny-slider.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/reey-font/stylesheet.css" />
+    <link rel="stylesheet" href="../assets/vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/owl-carousel/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/twentytwenty/twentytwenty.css" />
 
     <!-- template styles -->
-    <link rel="stylesheet" href="assets/css/zilom.css" />
-    <link rel="stylesheet" href="assets/css/zilom-responsive.css" />
+    <link rel="stylesheet" href="../assets/css/zilom.css" />
+    <link rel="stylesheet" href="../assets/css/zilom-responsive.css" />
 </head>
 
 <body>
 
     <div class="preloader">
-        <img class="preloader__image" width="60" src="assets/images/loader.png" alt="" />
+        <img class="preloader__image" width="60" src="../assets/images/loader.png" alt="" />
     </div>
 
     <!-- /.preloader -->
@@ -108,7 +108,7 @@
                                 <div class="left">
                                     <div class="logo-box1">
                                         <a href="index.php">
-                                            <img src="assets/images/loader.png" alt="">
+                                            <img src="../assets/images/loader.png" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@
                     <!--Start Single Swiper Slide-->
                     <div class="swiper-slide">
                         <div class="image-layer"
-                            style="background-image: url(assets/images/backgrounds/1894 x 916 px.png);"></div>
+                            style="background-image: url(../assets/images/backgrounds/1894 x 916 px.png);"></div>
                         <div class="image-layer-overlay"></div>
                         <div class="container">
                             <div class="row">
@@ -201,7 +201,7 @@
                     <!--Start Single Swiper Slide-->
                     <div class="swiper-slide">
                         <div class="image-layer"
-                            style="background-image: url(assets\images\backgrounds\1894 x 916 px.png);"></div>
+                            style="background-image: url(../assets\images\backgrounds\1894 x 916 px.png);"></div>
                         <div class="image-layer-overlay"></div>
                         <div class="container">
                             <div class="row">
@@ -221,7 +221,7 @@
                     <!--Start Single Swiper Slide-->
                     <div class="swiper-slide">
                         <div class="image-layer"
-                            style="background-image: url(assets/images/backgrounds/1894 x 916 px.png);"></div>
+                            style="background-image: url(../assets/images/backgrounds/1894 x 916 px.png);"></div>
                         <div class="image-layer-overlay"></div>
                         <div class="container">
                             <div class="row">
@@ -255,7 +255,7 @@
                     <div class="col-xl-12">
                         <div class="categories-two__inner">
                             <div class="shape1 wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms"><img
-                                    src="assets/images/shapes/thm-shape4." alt="" /></div>
+                                    src="../assets/images/shapes/thm-shape4." alt="" /></div>
                             <ul class="categories-two__wrapper list-unstyled">
                                 <!--Start Single Categories Two-->
                                 <li class="categories-two__single text-center wow fadeInUp animated animated"
@@ -266,7 +266,7 @@
                                             <h5>30</h5>
                                         </div>
                                         <div class="overly-bg"
-                                            style="background-image: url(assets/images/resources/categories-v2-overlay-img.png);">
+                                            style="background-image: url(../assets/images/resources/categories-v2-overlay-img.png);">
                                         </div>
                                     </div>
                                     <div class="categories-two__single-text">
@@ -285,7 +285,7 @@
                                             <h5>30</h5>
                                         </div>
                                         <div class="overly-bg"
-                                            style="background-image: url(assets/images/resources/categories-v2-overlay-img.png);">
+                                            style="background-image: url(../assets/images/resources/categories-v2-overlay-img.png);">
                                         </div>
                                     </div>
                                     <div class="categories-two__single-text">
@@ -304,7 +304,7 @@
                                             <h5>30</h5>
                                         </div>
                                         <div class="overly-bg"
-                                            style="background-image: url(assets/images/resources/categories-v2-overlay-img.png);">
+                                            style="background-image: url(../assets/images/resources/categories-v2-overlay-img.png);">
                                         </div>
                                     </div>
                                     <div class="categories-two__single-text">
@@ -323,7 +323,7 @@
                                             <h5>30</h5>
                                         </div>
                                         <div class="overly-bg"
-                                            style="background-image: url(assets/images/resources/categories-v2-overlay-img.png);">
+                                            style="background-image: url(../assets/images/resources/categories-v2-overlay-img.png);">
                                         </div>
                                     </div>
                                     <div class="categories-two__single-text">
@@ -342,7 +342,7 @@
                                             <h5>30</h5>
                                         </div>
                                         <div class="overly-bg"
-                                            style="background-image: url(assets/images/resources/categories-v2-overlay-img.png);">
+                                            style="background-image: url(../assets/images/resources/categories-v2-overlay-img.png);">
                                         </div>
                                     </div>
                                     <div class="categories-two__single-text">
@@ -406,16 +406,16 @@
                     <!--Start Welcome One Right-->
                     <div class="col-xl-6">
                         <div class="welcome-one__right clearfix">
-                            <div class="shape1 rotate-me"><img src="assets/images/shapes/thm-shape1.png" alt="" /></div>
+                            <div class="shape1 rotate-me"><img src="../assets/images/shapes/thm-shape1.png" alt="" /></div>
                             <div class="welcome-one__right-img1 wow slideInRight" data-wow-delay="100ms"
                                 data-wow-duration="2500ms">
                                 <div class="welcome-one__right-img1-inner">
-                                    <img src="assets/images/resources/welcom.jpg" alt="" />
+                                    <img src="../assets/images/resources/welcom.jpg" alt="" />
                                 </div>
                             </div>
                             <div class="welcome-one__right-img2 wow zoomIn" data-wow-delay="100ms"
                                 data-wow-duration="3500ms">
-                                <img src="assets/images/resources/w.jpg" alt="" />
+                                <img src="../assets/images/resources/w.jpg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -440,14 +440,14 @@
                         data-wow-duration="1000ms">
                         <div class="courses-one__single">
                             <div class="courses-one__single-img">
-                                <img src="assets/images/resources/courses-v1-img1.jpg" alt="" />
+                                <img src="../assets/images/resources/courses-v1-img1.jpg" alt="" />
                                 <div class="overlay-text">
                                     <p>Featured</p>
                                 </div>
                             </div>
                             <div class="courses-one__single-content">
                                 <div class="courses-one__single-content-overlay-img">
-                                    <img src="assets/images/resources/courses-v1-overlay-img1.png" alt="" />
+                                    <img src="../assets/images/resources/courses-v1-overlay-img1.png" alt="" />
                                 </div>
                                 <h6 class="courses-one__single-content-name">Kevin Martin</h6>
                                 <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a
@@ -480,14 +480,14 @@
                         data-wow-duration="1000ms">
                         <div class="courses-one__single">
                             <div class="courses-one__single-img">
-                                <img src="assets/images/resources/courses-v1-img2.jpg" alt="" />
+                                <img src="../assets/images/resources/courses-v1-img2.jpg" alt="" />
                                 <div class="overlay-text">
                                     <p>free</p>
                                 </div>
                             </div>
                             <div class="courses-one__single-content">
                                 <div class="courses-one__single-content-overlay-img">
-                                    <img src="assets/images/resources/courses-v1-overlay-img2.png" alt="" />
+                                    <img src="../assets/images/resources/courses-v1-overlay-img2.png" alt="" />
                                 </div>
                                 <h6 class="courses-one__single-content-name">Christine Eve</h6>
                                 <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a
@@ -520,14 +520,14 @@
                         data-wow-duration="1000ms">
                         <div class="courses-one__single">
                             <div class="courses-one__single-img">
-                                <img src="assets/images/resources/courses-v1-img3.jpg" alt="" />
+                                <img src="../assets/images/resources/courses-v1-img3.jpg" alt="" />
                                 <div class="overlay-text">
                                     <p>Featured</p>
                                 </div>
                             </div>
                             <div class="courses-one__single-content">
                                 <div class="courses-one__single-content-overlay-img">
-                                    <img src="assets/images/resources/courses-v1-overlay-img3.png" alt="" />
+                                    <img src="../assets/images/resources/courses-v1-overlay-img3.png" alt="" />
                                 </div>
                                 <h6 class="courses-one__single-content-name">David Cooper</h6>
                                 <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a
@@ -560,11 +560,11 @@
                         data-wow-duration="1000ms">
                         <div class="courses-one__single">
                             <div class="courses-one__single-img">
-                                <img src="assets/images/resources/courses-v1-img4.jpg" alt="" />
+                                <img src="../assets/images/resources/courses-v1-img4.jpg" alt="" />
                             </div>
                             <div class="courses-one__single-content">
                                 <div class="courses-one__single-content-overlay-img">
-                                    <img src="assets/images/resources/courses-v1-overlay-img4.png" alt="" />
+                                    <img src="../assets/images/resources/courses-v1-overlay-img4.png" alt="" />
                                 </div>
                                 <h6 class="courses-one__single-content-name">Sarah Albert</h6>
                                 <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a
@@ -598,7 +598,7 @@
 
         <!--Counter One Start-->
         <section class="counter-one jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-            style="background-image: url(assets/images/backgrounds/Design sans titre (5).png);">
+            style="background-image: url(../assets/images/backgrounds/Design sans titre (5).png);">
             <div class="container">
                 <div class="row">
                     <!--Start Counter One Left-->
@@ -673,7 +673,7 @@
                         <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="0ms"
                             data-wow-duration="1500ms">
                             <div class="meet-teachers-one__single-img">
-                                <img src="assets/images/resources/meet-teachers-v1-img1.png" alt="" />
+                                <img src="../assets/images/resources/meet-teachers-v1-img1.png" alt="" />
                             </div>
 
                             <div class="meet-teachers-one__single-content">
@@ -710,7 +710,7 @@
                         <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="100ms"
                             data-wow-duration="1500ms">
                             <div class="meet-teachers-one__single-img">
-                                <img src="assets/images/resources/meet-teachers-v1-img2.png" alt="" />
+                                <img src="../assets/images/resources/meet-teachers-v1-img2.png" alt="" />
                             </div>
 
                             <div class="meet-teachers-one__single-content">
@@ -747,7 +747,7 @@
                         <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="200ms"
                             data-wow-duration="1500ms">
                             <div class="meet-teachers-one__single-img">
-                                <img src="assets/images/resources/meet-teachers-v1-img3.png" alt="" />
+                                <img src="../assets/images/resources/meet-teachers-v1-img3.png" alt="" />
                             </div>
 
                             <div class="meet-teachers-one__single-content">
@@ -792,7 +792,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="cta-one__wrapper wow slideInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
-                            <div class="shape1"><img src="assets/images/shapes/thm-shape5.png" alt="" /></div>
+                            <div class="shape1"><img src="../assets/images/shapes/thm-shape5.png" alt="" /></div>
                             <div class="cta-one__left">
                                 <h2 class="cta-one__left-text">We’ve Best Teachers in Every Subjects</h2>
                             </div>
@@ -811,7 +811,7 @@
 
         <!--Start Testimonials Two-->
         <section class="testimonials-two">
-            <div class="testimonials-two__pattern"><img src="assets/images/pattern/testimonials-two-left-pattern.png"
+            <div class="testimonials-two__pattern"><img src="../assets/images/pattern/testimonials-two-left-pattern.png"
                     alt="" /></div>
             <div class="container">
                 <div class="row">
@@ -842,7 +842,7 @@
                                             tempor incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img1.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img1.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -867,7 +867,7 @@
                                             incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img2.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img2.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -892,7 +892,7 @@
                                             incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img3.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img3.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -917,7 +917,7 @@
                                             incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img1.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img1.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -941,7 +941,7 @@
                                             incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img2.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img2.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -965,7 +965,7 @@
                                             incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img3.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img3.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -989,7 +989,7 @@
                                             incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img1.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img1.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -1013,7 +1013,7 @@
                                             incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="testimonials-one__single-client-info">
                                             <div class="testimonials-one__single-client-info-img">
-                                                <img src="assets/images/testimonial/testimonials-v1-client-info-img2.png"
+                                                <img src="../assets/images/testimonial/testimonials-v1-client-info-img2.png"
                                                     alt="" />
                                             </div>
                                             <div class="testimonials-one__single-client-info-text">
@@ -1042,7 +1042,7 @@
                         <div class="features-two__single">
                             <div class="features-two__single-img">
                                 <div class="features-two__single-img-inner">
-                                    <img src="assets/images/feauters/499.jpg" alt="" />
+                                    <img src="../assets/images/feauters/499.jpg" alt="" />
                                 </div>
                                 <div class="features-two__single-overlay">
                                     <h3 class="features-two__single-overlay-title"><a href="#">Become an Teacher</a>
@@ -1060,7 +1060,7 @@
                         <div class="features-two__single">
                             <div class="features-two__single-img">
                                 <div class="features-two__single-img-inner">
-                                    <img src="assets/images/feauters/4992.jpg" alt="" />
+                                    <img src="../assets/images/feauters/4992.jpg" alt="" />
                                 </div>
                                 <div class="features-two__single-overlay">
                                     <h3 class="features-two__single-overlay-title"><a href="#">Join our Community</a>
@@ -1084,9 +1084,9 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="registration-two__wrapper">
-                            <div class="shape1 zoom-fade"><img src="assets/images/shapes/thm-shape2.png" alt="" /></div>
+                            <div class="shape1 zoom-fade"><img src="../assets/images/shapes/thm-shape2.png" alt="" /></div>
                             <div class="shape2 wow slideInRight" data-wow-delay="100ms" data-wow-duration="2500ms"><img
-                                    src="assets/images/shapes/thm-shape3.png" alt="" /></div>
+                                    src="../assets/images/shapes/thm-shape3.png" alt="" /></div>
                             <div class="registration-two__left">
                                 <h2 class="registration-two__left-text">Start Your Education Career <br>with Zilom</h2>
                             </div>
@@ -1105,7 +1105,7 @@
 
         <!--Start Footer One-->
         <footer class="footer-one">
-            <div class="footer-one__bg" style="background-image: url(assets/images/backgrounds/1894x562.png);">
+            <div class="footer-one__bg" style="background-image: url(../assets/images/backgrounds/1894x562.png);">
             </div><!-- /.footer-one__bg -->
             <div class="footer-one__top">
             <div class="container">
@@ -1114,7 +1114,7 @@
                     <div class="col-xl-2 col-lg-4 col-md-4 wow animated fadeInUp" data-wow-delay="0.1s">
                         <div class="footer-widget__column footer-widget__about">
                             <div class="footer-widget__about-logo">
-                                <a href="index.php"><img src="assets/images/loader.png" alt=""></a>
+                                <a href="index.php"><img src="../assets/images/loader.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -1213,7 +1213,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index.php" aria-label="logo image"><img src="assets/images/loader.png"
+                <a href="index.php" aria-label="logo image"><img src="../assets/images/loader.png"
                         width="155" alt="" /></a>
             </div>
             <!-- /.logo-box -->
@@ -1266,31 +1266,31 @@
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
 
 
-    <script src="assets/vendors/jquery/jquery-3.5.1.min.js"></script>
-    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
-    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
-    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
-    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
-    <script src="assets/vendors/nouislider/nouislider.min.js"></script>
-    <script src="assets/vendors/odometer/odometer.min.js"></script>
-    <script src="assets/vendors/swiper/swiper.min.js"></script>
-    <script src="assets/vendors/tiny-slider/tiny-slider.min.js"></script>
-    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
-    <script src="assets/vendors/wow/wow.js"></script>
-    <script src="assets/vendors/isotope/isotope.js"></script>
-    <script src="assets/vendors/countdown/countdown.min.js"></script>
-    <script src="assets/vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="assets/vendors/twentytwenty/twentytwenty.js"></script>
-    <script src="assets/vendors/twentytwenty/jquery.event.move.js"></script>
+    <script src="../assets/vendors/jquery/jquery-3.5.1.min.js"></script>
+    <script src="../assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="../assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script src="../assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="../assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script src="../assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script src="../assets/vendors/nouislider/nouislider.min.js"></script>
+    <script src="../assets/vendors/odometer/odometer.min.js"></script>
+    <script src="../assets/vendors/swiper/swiper.min.js"></script>
+    <script src="../assets/vendors/tiny-slider/tiny-slider.min.js"></script>
+    <script src="../assets/vendors/wnumb/wNumb.min.js"></script>
+    <script src="../assets/vendors/wow/wow.js"></script>
+    <script src="../assets/vendors/isotope/isotope.js"></script>
+    <script src="../assets/vendors/countdown/countdown.min.js"></script>
+    <script src="../assets/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="../assets/vendors/twentytwenty/twentytwenty.js"></script>
+    <script src="../assets/vendors/twentytwenty/jquery.event.move.js"></script>
 
 
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM"></script>
 
     <!-- template js -->
-    <script src="assets/js/zilom.js"></script>
+    <script src="../assets/js/zilom.js"></script>
 
 
 </body>

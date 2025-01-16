@@ -1,12 +1,13 @@
 <?php
 
 namespace Classes;
+
 use Classes\DatabaseConnection;
 use Classes\User;
 
 class Etudiant extends User
 {
-    private $password;
+    protected $password;
     private $status;
 
     public function __construct($idUser, $nom, $prenom, $email, $password, $status = 'active')
@@ -47,4 +48,33 @@ class Etudiant extends User
             return false;
         }
     }
+
+    public static function showAllEtudiant()
+    {
+        try {
+            $con = DatabaseConnection::getInstance()->getConnection();
+            $sql = "SELECT idUser, nom, prenom, email, status, date_creation 
+                    FROM users WHERE idRole = 3"; 
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            echo "Error retrieving all Etudiant: " . $e->getMessage();
+            return false;
+        }
+    }
+    // public static function ViewStatistic()
+    // {
+    //     try {
+    //         $con = DatabaseConnection::getInstance()->getConnection();
+    //         $sql = "SELECT idUser, nom, prenom, email, status, date_creation 
+    //                 FROM users WHERE idRole = 3"; 
+    //         $stmt = $con->prepare($sql);
+    //         $stmt->execute();
+    //         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    //     } catch (\PDOException $e) {
+    //         echo "Error retrieving all Etudiant: " . $e->getMessage();
+    //         return false;
+    //     }
+    // }
 }

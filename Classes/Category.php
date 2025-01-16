@@ -4,7 +4,7 @@ namespace Classes;
 
 use Classes\DatabaseConnection;
 
-class Category
+class Categorie
 {
     private $idCategory;
     private $nom;
@@ -23,12 +23,12 @@ class Category
     {
         try {
             $pdo = DatabaseConnection::getInstance()->getConnection();
-            $sql = "INSERT INTO categories (nom, description, imageCategory) VALUES (:nom, :description, :imageCategory)";
+            $sql = "INSERT INTO categories (nom, description, imageCategy) VALUES (:nom, :description, :imageCategory)";
             $stmt = $pdo->prepare($sql);
 
-            $stmt->bindParam(':nom', $this->nom, \PDO::PARAM_STR);
-            $stmt->bindParam(':description', $this->description, \PDO::PARAM_STR);
-            $stmt->bindParam(':imageCategory', $this->imageCategory, \PDO::PARAM_STR);
+            $stmt->bindParam(':nom', $this->nom);
+            $stmt->bindParam(':description', $this->description);
+            $stmt->bindParam(':imageCategory', $this->imageCategory);
 
             return $stmt->execute();
         } catch (\PDOException $e) {
@@ -37,16 +37,17 @@ class Category
         }
     }
 
-    public function updateCategory($id, $nom, $description)
+    public function updateCategory($id, $nom, $description,$imageCategy)
     {
         try {
             $pdo = DatabaseConnection::getInstance()->getConnection();
-            $sql = "UPDATE categories SET nom = :nom, description = :description WHERE idCategory = :idCategory";
+            $sql = "UPDATE categories SET nom = :nom, description = :description , imageCategy = :imageCategy WHERE idCategory = :idCategory";
             $stmt = $pdo->prepare($sql);
 
-            $stmt->bindParam(':idCategory', $id, \PDO::PARAM_INT);
-            $stmt->bindParam(':nom', $nom, \PDO::PARAM_STR);
-            $stmt->bindParam(':description', $description, \PDO::PARAM_STR);
+            $stmt->bindParam(':idCategory', $id );
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':imageCategy', $imageCategy);
 
             return $stmt->execute();
         } catch (\PDOException $e) {
