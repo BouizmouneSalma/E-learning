@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
+    <title>About || Udemey</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicons/favicon-32x32.png" />
@@ -32,28 +32,23 @@
     <link rel="stylesheet" href="../assets/vendors/owl-carousel/owl.carousel.min.css" />
     <link rel="stylesheet" href="../assets/vendors/owl-carousel/owl.theme.default.min.css" />
     <link rel="stylesheet" href="../assets/vendors/twentytwenty/twentytwenty.css" />
-
     <!-- template styles -->
     <link rel="stylesheet" href="../assets/css/zilom.css" />
     <link rel="stylesheet" href="../assets/css/zilom-responsive.css" />
 </head>
-
 <body>
-
     <div class="preloader">
         <img class="preloader__image" width="60" src="../assets/images/loader.png" alt="" />
     </div>
-
     <!-- /.preloader -->
     <div class="page-wrapper">
-
-        <header class="main-header main-header--one  clearfix">
+    <header class="main-header main-header--one  clearfix">
             <div class="main-header--one__top clearfix">
                 <div class="container">
                     <div class="main-header--one__top-inner clearfix">
                         <div class="main-header--one__top-left">
                             <div class="main-header--one__top-logo">
-                                <a href="index.php"><img src="../assets/images/loader.png" alt=""/></a>
+                                <a href="../index.php"><img src="../assets/images/resources/logo-1.png" alt=""/></a>
                             </div>
                         </div>
 
@@ -73,7 +68,7 @@
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="tel:123456789">92 888 666 0000</a></p>
+                                            <p><a href="tel:0651928482">+212 651928482</a></p>
                                         </div>
                                     </li>
                                     <li class="main-header--one__top-contact-info-list-item">
@@ -82,7 +77,7 @@
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="perso1salmabouizmoune@gmail.com">perso1salmabouizmoune@gmail.com</a></p>
+                                            <p><a href="mailto:salmabouizmoune@gmail.com">salmabouizmoune@gmail.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
@@ -92,8 +87,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="main-header-one__bottom clearfix">
                 <div class="container">
                     <div class="main-header-one__bottom-inner clearfix">
@@ -104,18 +97,19 @@
                                 <div class="left">
                                     <ul class="main-menu__list">
                                         <li class="dropdown">
-                                            <a href="index.php">Home</a>
+                                            <a href="../index.php">Home</a>
                                         </li>
-                                        <li class="current"><a href="about.php">About</a></li>
+                                        <li><a href="about.php">About</a></li>
                                         <li class="dropdown">
-                                            <a href="#">Courses</a>
-                                            <ul>
-                                                <li><a href="courses.php">Courses</a></li>
-                                                <li><a href="course-details.php">Course Details</a></li>
-                                            </ul>
+                                            <a href="courses.php">Courses</a>
+                                           
                                         </li>
                                         <li class="dropdown">
-                                            <a href="teachers.php"> Teachers</a>
+                                            <a href="teachers-1.php"> Teachers</a>
+                                           
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="news.php">News</a> 
                                         </li>
                                         <li><a href="contact.php">Contact</a></li>
                                     </ul>
@@ -125,8 +119,8 @@
                                     <div class="main-menu__right">
                                         <div class="main-menu__right-login-register">
                                             <ul class="list-unstyled">
-                                                <li><a href="#">Login</a></li>
-                                                <li><a href="#">Register</a></li>
+                                                <li><a href="login.php">Login</a></li>
+                                                <li><a href="register.php">Register</a></li>
                                             </ul>
                                         </div>
                                         <div class="main-menu__right-cart-search">
@@ -159,7 +153,7 @@
 
 
     <!--Page Header Start-->
-    <section class="page-header clearfix" style="background-image: url(../assets/images/backgrounds/1894 x 339.png);">
+    <section class="page-header clearfix" style="background-image: url(../assets/images/backgrounds/about1.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -169,7 +163,7 @@
                         </div>
                         <div class="page-header__menu">
                             <ul class="page-header__menu-list list-unstyled clearfix">
-                                <li><a href="index.php">Home</a></li>
+                                <li><a href="../index.php">Home</a></li>
                                 <li class="active">about</li>
                             </ul>
                         </div>
@@ -187,13 +181,13 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                     <div class="about-two__single-img">
-                        <img src="../assets/images/about/about1.jpg" alt=""/>
+                        <img src="../assets/images/about/about-v2-img2.jpg" alt=""/>
                     </div>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
                     <div class="about-two__single-img">
-                        <img src="../assets/images/about/about2.jpg" alt=""/>
+                        <img src="../assets/images/about/about1.jpg" alt=""/>
                     </div>
                 </div>
             </div>
@@ -225,13 +219,13 @@
 
 
 
-    <!--Company Logos One Start-->
-    <section class="company-logos-one company-logos-one--two">
-        <div class="container">
-            <div class="company-logos-one__title text-center">
-                <h6>Who Will You Learn With?</h6>
-            </div>
-            <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
+        <!--Company Logos One Start-->
+        <section class="company-logos-one">
+            <div class="container">
+                <div class="company-logos-one__title text-center">
+                    <h6>Who Will You Learn With?</h6>
+                </div>
+                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
                 "0": {
                     "spaceBetween": 30,
                     "slidesPerView": 2
@@ -257,42 +251,42 @@
                     "slidesPerView": 5
                 }
             }}'>
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="../assets/images/resources/Company-Logos-v1-logo1.png" alt="">
-                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo1.png" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo2.jpg" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo3.png" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo4.svg" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo5.jpg" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo6.jpg" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo7.png" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo1.png" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo1.png" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img src="../assets/images/resources/logo1.png" alt="">
+                        </div><!-- /.swiper-slide -->
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--Company Logos One End-->
+        </section>
+        <!--Company Logos One End-->
 
 
     <!--Start Testimonials Two-->
@@ -471,7 +465,7 @@
 
 
     <!--Counter One Start-->
-    <section class="counter-one counter-one--about jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%" style="background-image: url(../assets/images/backgrounds/Design sans titre (5).png);">
+    <section class="counter-one counter-one--about jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%" style="background-image: url(../assets/images/backgrounds/about.jpeg);">
         <div class="container">
             <div class="row">
                 <!--Start Counter One Left-->
@@ -479,7 +473,7 @@
                     <div class="counter-one__left">
                         <div class="section-title">
                             <span class="section-title__tagline">Fun Facts</span>
-                            <h2 class="section-title__title">Zilom Mission is to <br>Polish your skill</h2>
+                            <h2 class="section-title__title">YouCode Mission is to <br>Polish your skill</h2>
                         </div>
                         <p class="counter-one__left-text">There are many variations of passages of lore ipsum available but the majority have suffered.</p>
                     </div>
@@ -541,13 +535,13 @@
                 <div class="col-xl-4 col-lg-4">
                     <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="meet-teachers-one__single-img">
-                            <img src="../assets/images/resources/meet-teachers-v1-img4.png" alt=""/>
+                            <img src="../assets/images/resources/charaf.png.jpg" alt=""/>
                         </div>
 
                         <div class="meet-teachers-one__single-content">
                             <div class="meet-teachers-one__single-middle-content">
                                 <div class="title">
-                                    <h4><a href="#">Jessica Brown</a></h4>
+                                    <h4><a href="#">Tbibzat Charaf Eddine</a></h4>
                                     <p>teacher</p>
                                 </div>
                                 <p class="meet-teachers-one__single-content-text">There are many varia of passages the free ipsum lorem.</p>
@@ -576,13 +570,13 @@
                 <div class="col-xl-4 col-lg-4">
                     <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
                         <div class="meet-teachers-one__single-img">
-                            <img src="../assets/images/resources/meet-teachers-v1-img5.png" alt=""/>
+                            <img src="../assets/images/resources/abid.jpg" alt=""/>
                         </div>
 
                         <div class="meet-teachers-one__single-content">
                             <div class="meet-teachers-one__single-middle-content">
                                 <div class="title">
-                                    <h4><a href="#">Mike Hardson</a></h4>
+                                    <h4><a href="#">Abid</a></h4>
                                     <p>teacher</p>
                                 </div>
                                 <p class="meet-teachers-one__single-content-text">There are many varia of passages the free ipsum lorem.</p>
@@ -611,13 +605,13 @@
                 <div class="col-xl-4 col-lg-4">
                     <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
                         <div class="meet-teachers-one__single-img">
-                            <img src="../assets/images/resources/meet-teachers-v1-img6.png" alt=""/>
+                            <img src="../assets/images/resources/achraf.jpg" alt=""/>
                         </div>
 
                         <div class="meet-teachers-one__single-content">
                             <div class="meet-teachers-one__single-middle-content">
                                 <div class="title">
-                                    <h4><a href="#">Christine Eve</a></h4>
+                                    <h4><a href="#">Achraf</a></h4>
                                     <p>teacher</p>
                                 </div>
                                 <p class="meet-teachers-one__single-content-text">There are many varia of passages the free ipsum lorem.</p>
@@ -686,7 +680,7 @@
 
     <!--Start Footer One-->
     <footer class="footer-one">
-            <div class="footer-one__bg" style="background-image: url(../assets/images/backgrounds/1894x562.png);">
+            <div class="footer-one__bg" style="background-image: url(../assets/images/backgrounds/footer.jpg);">
             </div><!-- /.footer-one__bg -->
             <div class="footer-one__top">
             <div class="container">
@@ -695,7 +689,7 @@
                     <div class="col-xl-2 col-lg-4 col-md-4 wow animated fadeInUp" data-wow-delay="0.1s">
                         <div class="footer-widget__column footer-widget__about">
                             <div class="footer-widget__about-logo">
-                                <a href="index.php"><img src="../assets/images/loader.png" alt=""></a>
+                                <a href="../index.php"><img src="../assets/images/resources/footer-logo.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -708,8 +702,9 @@
                             <ul class="footer-widget__courses-list list-unstyled">
                                 <li><a href="#">UI/UX Design</a></li>
                                 <li><a href="#">WordPress Development</a></li>
+                                <li><a href="#">Business Strategy</a></li>
                                 <li><a href="#">Software Development</a></li>
-                                <li><a href="#">English</a></li>
+                                <li><a href="#">Business English</a></li>
                             </ul>
                         </div>
                     </div>
@@ -722,8 +717,9 @@
                             <ul class="footer-widget__links-list list-unstyled">
                                 <li><a href="about.php">About Us</a></li>
                                 <li><a href="#">Overview</a></li>
-                                <li><a href="teachers.php">Teachers</a></li>
+                                <li><a href="teachers-1.php">Teachers</a></li>
                                 <li><a href="#">Join Us</a></li>
+                                <li><a href="news.php">Our News</a></li>
                             </ul>
                         </div>
                     </div>
@@ -734,7 +730,7 @@
                         <div class="footer-widget__column footer-widget__contact">
                             <h3 class="footer-widget__title">Contact</h3>
                             <p class="text">88 broklyn street, New York USA</p>
-                            <p><a href="mailto:perso1salmabouizmoune.com">YouDemy@gmail.com</a></p>
+                            <p><a href="mailto:info@templatepath.com">needhelp@company.com</a></p>
                             <p class="phone"><a href="tel:123456789">92 888 666 0000</a></p>
                         </div>
                     </div>
@@ -764,7 +760,7 @@
                     <div class="col-xl-12">
                         <div class="footer-one__bottom-inner">
                             <div class="footer-one__bottom-text text-center">
-                                <p>&copy; Copyright 2025 by Bouizmoune</p>
+                                <p>&copy; Copyright 2021 by Layerdrops.com</p>
                             </div>
                         </div>
                     </div>
@@ -786,7 +782,7 @@
     </div><!-- /.page-wrapper -->
 
 
-    
+
     <div class="mobile-nav__wrapper">
         <div class="mobile-nav__overlay mobile-nav__toggler"></div>
         <!-- /.mobile-nav__overlay -->
@@ -794,7 +790,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index.php" aria-label="logo image"><img src="../assets/images/loader.png" width="155" alt="" /></a>
+                <a href="../index.php" aria-label="logo image"><img src="../assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
             </div>
             <!-- /.logo-box -->
             <div class="mobile-nav__container"></div>
@@ -803,7 +799,7 @@
             <ul class="mobile-nav__contact list-unstyled">
                 <li>
                     <i class="icon-phone-call"></i>
-                    <a href="mailto:perso1salmabouizmoune.com">perso1salmabouizmoune.com</a>
+                    <a href="mailto:needhelp@packageName__.com">needhelp@zilom.com</a>
                 </li>
                 <li>
                     <i class="icon-letter"></i>

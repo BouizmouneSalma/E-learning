@@ -64,7 +64,7 @@ class Etudiant extends User
         }
     }
     // public static function ViewStatistic()
-    // {
+    // { 
     //     try {
     //         $con = DatabaseConnection::getInstance()->getConnection();
     //         $sql = "SELECT idUser, nom, prenom, email, status, date_creation 

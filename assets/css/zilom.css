@@ -4994,7 +4994,7 @@ ul {
 .welcome-one__right {
     position: relative;
     display: block;
-    max-width: 500px;
+    max-width: 570px;
     float: right;
     z-index: 1;
 }
@@ -5167,12 +5167,13 @@ ul {
 .counter-one {
     position: relative;
     display: block;
-    padding: 300px 0px 107px;
+    padding: 340px 0px 108px;
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 1;
+    margin-top: -220px;
 }
 
 .counter-one::before {

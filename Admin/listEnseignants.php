@@ -99,7 +99,7 @@
         </a>
         <ul class="side-menu w-full mt-12">
     <li class=" h-12 bg-transparent ml-2.5 rounded-l-full p-1">
-        <a href="../index.php">
+        <a href="./index.php">
             <i class="fa-solid fa-chart-pie"></i> Statistic
         </a>
     </li>
@@ -172,14 +172,16 @@
         <main class=" mainn w-full p-[36px_24px] max-h-[calc(100vh_-_56px)]">
             <div class="header flex items-center justify-between gap-[16px] flex-wrap">
                 <div class="left">
-                    <ul class="breadcrumb flex items-center space-x-[16px]">
-                        <li class="text-[#363949]"><a href="listClients.php">
+                <ul class="breadcrumb flex items-center space-x-[16px]">
+                        <li class="text-[#363949]"><a  href="listClients.php">
                                 index &npr;
                             </a></li>
-                        /
-                        <li class="text-[#363949]"><a href="listCars.php">Clients &npr;</a></li> /
-                        <li class="text-[#363949]"><a href="listContrat.php" class="active">Vehicles &npr;</a></li> /
-                        <li class="text-[#363949]"><a href="statistic.php">Categorys &npr;</a></li>
+                        
+                        <li class="text-[#363949]"><a href="listCars.php" >Etudients &npr;</a></li> 
+                        <li class="text-[#363949]"><a href="listContrat.php" class="active">Enseignants &npr;</a></li> 
+                        <li class="text-[#363949]"><a href="statistic.php" >Cours &npr;</a></li>
+                        <li class="text-[#363949]"><a href="statistic.php" >Categorys &npr;</a></li>
+                        <li class="text-[#363949]"><a href="statistic.php">Tags &npr;</a></li>
 
                     </ul>
 

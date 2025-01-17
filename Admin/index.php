@@ -4,16 +4,8 @@ require_once '../autoload.php';
 use Classes\Admin;
 use Classes\Inscription;
 session_start();
-
-// if (!isset($_SESSION['id_user']) || (isset($_SESSION['id_role']) && $_SESSION['id_role'] !== 1)) {
-//     header("Location: ../index.php");
-//     exit;
-// }
-
-
-
 try {
-       $admin = new Admin(1, "Salma", "Bouizmoune", "salmabouizmoune@gmail.com", 1);
+       $admin = new Admin(1, "admin", "admin", "admin@gmail.com", 1);
     $result = $admin->ViewStatistic();
     
 } catch (\Exception $e) {
@@ -44,9 +36,9 @@ try {
     <!-- Side Bar -->
     <div class=" fixed top-0 left-0  w-[230px] h-[100%] z-50 overflow-hidden sidebar ">
         <a href="" class="logo text-xl font-bold h-[56px] flex items-center text-[#1976D2] z-30 pb-[20px] box-content">
-            <i class=" mt-4 text-xxl max-w-[60px] flex justify-center "><i class="fa-solid fa-book"></i></i>
-            <div class="logoname ml-2"><span>You
-            </span>Demy</div>
+            <i class=" mt-4 text-xxl max-w-[60px] flex justify-center "><i class="fa-solid fa-car-side"></i></i>
+            <div class="logoname ml-2"><span>Drive
+            </span>Loc</div>
         </a>
         <ul class="side-menu w-full mt-12">
     <li class="active h-12 bg-transparent ml-2.5 rounded-l-full p-1">
@@ -205,14 +197,29 @@ try {
             <p>Total Utilisateurs Actifs</p>
         </span>
     </li>
-    
-            <?php
+    <!-- <li class="flex items-center gap-3">
+        <div class="icon bg-green-200 rounded-full">
+            <i class="fa-solid fa-check text-xl text-green-600"></i>
+        </div>
+        <span class="info">
+            <h3 class="text-lg font-semibold">
+                <?php
                     if ($result && isset($result['total_res_acc'])) {
                         echo $result['total_res_acc'];
                     } else {
                         echo "No data available.";
                     }
                 ?>
+            </h3>
+            <p>Réservations Acceptées</p>
+        </span>
+    </li>
+    <li class="flex items-center gap-3">
+        <div class="icon bg-red-200 rounded-full">
+            <i class="fa-solid fa-times text-xl text-red-600"></i>
+        </div>
+        <span class="info">
+            <h3 class="text-lg font-semibold">
                 <?php
                     if ($result && isset($result['total_res_ref'])) {
                         echo $result['total_res_ref'];
@@ -220,7 +227,10 @@ try {
                         echo "No data available.";
                     }
                 ?>
-            
+            </h3>
+            <p>Réservations Rejetées</p>
+        </span>
+    </li> -->
 </ul>
 
 

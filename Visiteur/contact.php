@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
+    <title>Contact || Udemey</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicons/favicon-32x32.png" />
@@ -47,13 +47,13 @@
     <!-- /.preloader -->
     <div class="page-wrapper">
 
-        <header class="main-header main-header--one  clearfix">
+    <header class="main-header main-header--one  clearfix">
             <div class="main-header--one__top clearfix">
                 <div class="container">
                     <div class="main-header--one__top-inner clearfix">
                         <div class="main-header--one__top-left">
                             <div class="main-header--one__top-logo">
-                                <a href="index.php"><img src="../assets/images/resources/logo-1.png" alt=""/></a>
+                                <a href="../index.php"><img src="../assets/images/resources/logo-1.png" alt=""/></a>
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="tel:123456789">92 888 666 0000</a></p>
+                                            <p><a href="tel:0651928482">+212 651928482</a></p>
                                         </div>
                                     </li>
                                     <li class="main-header--one__top-contact-info-list-item">
@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="perso1salmabouizmoune@gmail.com">perso1salmabouizmoune@gmail.com</a></p>
+                                            <p><a href="mailto:salmabouizmoune@gmail.com">salmabouizmoune@gmail.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
@@ -104,21 +104,22 @@
                                 <div class="left">
                                     <ul class="main-menu__list">
                                         <li class="dropdown">
-                                            <a href="index.php">Home</a>
+                                            <a href="../index.php">Home</a>
                                         </li>
                                         <li><a href="about.php">About</a></li>
                                         <li class="dropdown">
-                                            <a href="#">Courses</a>
-                                            <ul>
-                                                <li><a href="courses.php">Courses</a></li>
-                                                <li><a href="course-details.php">Course Details</a></li>
-                                            </ul>
+                                            <a href="courses.php">Courses</a>
+                                           
                                         </li>
                                         <li class="dropdown">
-                                            <a href="teachers.php"> Teachers</a>
+                                            <a href="teachers-1.php"> Teachers</a>
+                                           
                                         </li>
+                                        <li class="dropdown">
+                                            <a href="news.php">News</a>
+                                            
                                         </li>
-                                        <li class="current"><a href="contact.php">Contact</a></li>
+                                        <li><a href="contact.php">Contact</a></li>
                                     </ul>
                                 </div>
 
@@ -126,8 +127,8 @@
                                     <div class="main-menu__right">
                                         <div class="main-menu__right-login-register">
                                             <ul class="list-unstyled">
-                                                <li><a href="#">Login</a></li>
-                                                <li><a href="#">Register</a></li>
+                                                <li><a href="login.php">Login</a></li>
+                                                <li><a href="register.php">Register</a></li>
                                             </ul>
                                         </div>
                                         <div class="main-menu__right-cart-search">
@@ -160,7 +161,7 @@
 
 
     <!--Page Header Start-->
-    <section class="page-header clearfix" style="background-image: url(../assets/images/backgrounds/1894 x 339.png);">
+    <section class="page-header clearfix" style="background-image: url(../assets/images/backgrounds/learning.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -170,7 +171,7 @@
                         </div>
                         <div class="page-header__menu">
                             <ul class="page-header__menu-list list-unstyled clearfix">
-                                <li><a href="index.php">Home</a></li>
+                                <li><a href="../index.php">Home</a></li>
                                 <li class="active">Contact</li>
                             </ul>
                         </div>
@@ -193,7 +194,7 @@
                             <span class="icon-chat"></span>
                         </div>
                         <div class="contact-details-one__single-text">
-                            <h4><a href="tel:0689501504">92 666 888 0000</a></h4>
+                            <h4><a href="tel:0651928482">+212 651928482</a></h4>
                             <p>Call Anytime</p>
                         </div>
                     </div>
@@ -207,7 +208,7 @@
                             <span class="icon-message-1"></span>
                         </div>
                         <div class="contact-details-one__single-text">
-                            <h4><a href="mailto:perso1salmabouizmoune.com">perso1salmabouizmoune.com</a></h4>
+                            <h4><a href="mailto:charafeddinetbibzat@gmail.com">charafeddinetbibzat@gmail.com</a></h4>
                             <p>Send Email</p>
                         </div>
                     </div>
@@ -287,11 +288,18 @@
     </section>
     <!--Contact Page End-->
 
+    <!--Contact Page Google Map Start-->
+    <section class="contact-page-google-map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd"
+            class="contact-page-google-map__one" allowfullscreen></iframe>
+    </section>
+    <!--Contact Page Google Map End-->
 
 
     <!--Start Footer One-->
     <footer class="footer-one">
-            <div class="footer-one__bg" style="background-image: url(../assets/images/backgrounds/1894x562.png);">
+            <div class="footer-one__bg" style="background-image: url(../assets/images/backgrounds/footer.jpg);">
             </div><!-- /.footer-one__bg -->
             <div class="footer-one__top">
             <div class="container">
@@ -300,7 +308,7 @@
                     <div class="col-xl-2 col-lg-4 col-md-4 wow animated fadeInUp" data-wow-delay="0.1s">
                         <div class="footer-widget__column footer-widget__about">
                             <div class="footer-widget__about-logo">
-                                <a href="index.php"><img src="../assets/images/loader.png" alt=""></a>
+                                <a href="../index.php"><img src="../assets/images/resources/footer-logo.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -313,8 +321,9 @@
                             <ul class="footer-widget__courses-list list-unstyled">
                                 <li><a href="#">UI/UX Design</a></li>
                                 <li><a href="#">WordPress Development</a></li>
+                                <li><a href="#">Business Strategy</a></li>
                                 <li><a href="#">Software Development</a></li>
-                                <li><a href="#">English</a></li>
+                                <li><a href="#">Business English</a></li>
                             </ul>
                         </div>
                     </div>
@@ -327,8 +336,9 @@
                             <ul class="footer-widget__links-list list-unstyled">
                                 <li><a href="about.php">About Us</a></li>
                                 <li><a href="#">Overview</a></li>
-                                <li><a href="teachers.php">Teachers</a></li>
+                                <li><a href="teachers-1.php">Teachers</a></li>
                                 <li><a href="#">Join Us</a></li>
+                                <li><a href="news.php">Our News</a></li>
                             </ul>
                         </div>
                     </div>
@@ -339,7 +349,7 @@
                         <div class="footer-widget__column footer-widget__contact">
                             <h3 class="footer-widget__title">Contact</h3>
                             <p class="text">88 broklyn street, New York USA</p>
-                            <p><a href="mailto:perso1salmabouizmoune.com">perso1salmabouizmoune.com</a></p>
+                            <p><a href="mailto:info@templatepath.com">needhelp@company.com</a></p>
                             <p class="phone"><a href="tel:123456789">92 888 666 0000</a></p>
                         </div>
                     </div>
@@ -361,7 +371,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--Start Footer One Bottom-->
         <div class="footer-one__bottom">
             <div class="container">
@@ -369,7 +379,7 @@
                     <div class="col-xl-12">
                         <div class="footer-one__bottom-inner">
                             <div class="footer-one__bottom-text text-center">
-                                <p>&copy; Copyright 2024 by Bouizmoune</p>
+                                <p>&copy; Copyright 2021 by Layerdrops.com</p>
                             </div>
                         </div>
                     </div>
@@ -399,7 +409,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index.php" aria-label="logo image"><img src="../assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
+                <a href="../index.php" aria-label="logo image"><img src="../assets/images/resources/mobilemenu_logo.png" width="155" alt="" /></a>
             </div>
             <!-- /.logo-box -->
             <div class="mobile-nav__container"></div>
@@ -408,7 +418,7 @@
             <ul class="mobile-nav__contact list-unstyled">
                 <li>
                     <i class="icon-phone-call"></i>
-                    <a href="mailto:perso1salmabouizmoune.com">perso1salmabouizmoune.com</a>
+                    <a href="mailto:needhelp@packageName__.com">needhelp@zilom.com</a>
                 </li>
                 <li>
                     <i class="icon-letter"></i>
