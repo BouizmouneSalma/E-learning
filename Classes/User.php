@@ -35,9 +35,7 @@ class User{
     
             if ($stmt->rowCount() === 1) {
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-                // Debug logs
-                error_log("Stored hashed password: " . $user['password']);
+                    error_log("Stored hashed password: " . $user['password']);
                 error_log("Password entered: " . $password);
                 
                 if (password_verify($password, $user['password'])) {

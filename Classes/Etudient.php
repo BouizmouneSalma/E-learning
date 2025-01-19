@@ -25,7 +25,7 @@ class Etudiant extends User
                     VALUES (:nom, :prenom, :email, :password, :status, :idRole)";
             $stmt = $con->prepare($sql);
 
-            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
             $idRole = 3; 
 
             $stmt->bindParam(':nom', $this->nom, \PDO::PARAM_STR);

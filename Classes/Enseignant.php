@@ -27,7 +27,7 @@ class Enseignant extends User
                     VALUES (:nom, :prenom, :email, :password, :status, :dateInscription, :idRole)";
             $stmt = $con->prepare($sql);
 
-            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
             $idRole = 2; 
 
             $stmt->bindParam(':nom', $this->nom, \PDO::PARAM_STR);

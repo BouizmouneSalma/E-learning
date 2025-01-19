@@ -19,8 +19,7 @@ CREATE TABLE users (
 );
 
 
--- Table des categories
-
+-- Table des catégories
 CREATE TABLE categories (
     idCategory INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL UNIQUE,
@@ -34,6 +33,7 @@ CREATE TABLE cours (
     titre VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     contenu TEXT,
+    type ENUM('text','video') not null,
     categorie_id INT,
     enseignant_id INT NOT NULL,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -64,4 +64,13 @@ CREATE TABLE inscriptions (
     date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cours_id) REFERENCES cours(idCours) ON DELETE CASCADE,
     FOREIGN KEY (etudiant_id) REFERENCES users(idUser) ON DELETE CASCADE
+);
+-- Table des favoris 
+CREATE TABLE favoris (
+    etudiant_id INT NOT NULL,
+    cours_id INT NOT NULL,
+    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (etudiant_id, cours_id),
+    FOREIGN KEY (etudiant_id) REFERENCES users(idUser) ON DELETE CASCADE,
+    FOREIGN KEY (cours_id) REFERENCES cours(idCours) ON DELETE CASCADE
 );
