@@ -1,10 +1,9 @@
 <?php
 
-namespace Classes;
 
-use Classes\DatabaseConnection;
-use Classes\User;
-use PDO;
+include_once __DIR__ . '/classes/DatabaseConnection.php';
+include_once __DIR__ . '/classes/User.php';
+
 class Enseignant extends User
 {
     protected $password;

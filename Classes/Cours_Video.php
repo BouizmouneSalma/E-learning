@@ -2,9 +2,10 @@
 
 namespace Classes;
 
-use Classes\DatabaseConnection;
-use Classes\Cours;
-use Classes\Cours_Tags;
+include_once __DIR__ . '/classes/DatabaseConnection.php';
+include_once __DIR__ . '/classes/Cours.php';
+include_once __DIR__ . '/classes/Cours_Tags.php';
+
 
 class Cours_Video extends Cours
 {

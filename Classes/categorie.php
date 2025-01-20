@@ -1,8 +1,5 @@
 <?php
-
-namespace Classes;
-
-use Classes\DatabaseConnection;
+include_once __DIR__ . '/classes/DatabaseConnection.php';
 
 class Categorie
 {

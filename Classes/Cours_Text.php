@@ -1,10 +1,7 @@
 <?php
 
-namespace Classes;
-
-use Classes\DatabaseConnection;
-use Classes\Cours;
-use Classes\Cours_Tags;
+include_once __DIR__ . '/classes/DatabaseConnection.php';use Classes\Cours;
+include_once __DIR__ . '/classes/Cours_Tags.php';
 class Cours_Text extends Cours
 {
     private $contenu;

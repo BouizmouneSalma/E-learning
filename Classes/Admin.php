@@ -1,10 +1,7 @@
 <?php
 
-namespace Classes;
-
-
-use Classes\User;
-use Classes\DatabaseConnection;
+include_once __DIR__ . '/classes/DatabaseConnection.php';
+include_once __DIR__ . '/classes/User.php';
 
 class Admin extends User {
     public function ViewStatistic() {

@@ -1,9 +1,7 @@
 <?php
 
-namespace Classes;
 
-use Classes\DatabaseConnection;
-use PDO;
+include_once __DIR__ . '/classes/DatabaseConnection.php';
 abstract class Cours
 {
     protected $idCours;

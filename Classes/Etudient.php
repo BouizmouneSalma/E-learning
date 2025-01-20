@@ -1,10 +1,7 @@
 <?php
 
-namespace Classes;
-
-use Classes\DatabaseConnection;
-use Classes\User;
-
+include_once __DIR__ . '/classes/DatabaseConnection.php';
+include_once __DIR__ . '/classes/User.php';
 class Etudiant extends User
 {
     protected $password;
