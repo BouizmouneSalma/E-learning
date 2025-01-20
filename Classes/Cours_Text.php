@@ -4,43 +4,72 @@ namespace Classes;
 
 use Classes\DatabaseConnection;
 use Classes\Cours;
- 
+use Classes\Cours_Tags;
 class Cours_Text extends Cours
 {
     private $contenu;
 
-    public function __construct($titre, $description, $contenu = null, $categorie_id = null, $enseignant_id,$type)
+    public function __construct($titre, $description, $contenu , $categorie_id , $enseignant_id,$type,$tags)
     {
-        parent::__construct($titre, $description, $categorie_id, $enseignant_id,$type);
+        parent::__construct($titre, $description, $categorie_id, $enseignant_id,$type,$tags);
         $this->contenu = $contenu;
     }
 
-    public function addCours()
-    {
+   
+    public function addCours() {
         try {
             $pdo = DatabaseConnection::getInstance()->getConnection();
-            $sql = "INSERT INTO cours (titre, description, contenu, categorie_id, enseignant_id,type) 
-                    VALUES (:titre, :description, :contenu, :categorie_id, :enseignant_id,:type)";
+    
+            // Begin the transaction
+            $pdo->beginTransaction();
+    
+            $sql = "INSERT INTO cours (titre, description, contenu, categorie_id, enseignant_id, type) 
+                    VALUES (:titre, :description, :contenu, :categorie_id, :enseignant_id, :type)";
             $stmt = $pdo->prepare($sql);
-
+    
             $stmt->bindParam(':titre', $this->titre, \PDO::PARAM_STR);
             $stmt->bindParam(':description', $this->description, \PDO::PARAM_STR);
             $stmt->bindParam(':contenu', $this->contenu, \PDO::PARAM_STR);
             $stmt->bindParam(':categorie_id', $this->categorie_id, \PDO::PARAM_INT);
-            $stmt->bindParam(':enseignant_id', $this->enseignant_id, \PDO::PARAM_INT);
-            $stmt->bindParam(':type', $this->type, \PDO::PARAM_INT);
-
-            return $stmt->execute();
+            $stmt->bindParam(':enseignant_id', $this->enseignant_id);
+            $stmt->bindParam(':type', $this->type, \PDO::PARAM_STR);
+    
+            if ($stmt->execute()) {
+                $coursId = $pdo->lastInsertId();
+    
+                if (!empty($this->tags)) {
+                    foreach ($this->tags as $tagId) {
+                        $sql = "INSERT INTO cours_tags (cours_id, tag_id) VALUES (:cours_id, :tag_id)";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindParam(':cours_id', $coursId, \PDO::PARAM_INT); // Ensure cours_id is bound correctly
+                        $stmt->bindParam(':tag_id', $tagId, \PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
+                }
+    
+                $pdo->commit();
+                return true;
+            } else {
+                // Rollback the transaction if something goes wrong
+                $pdo->rollBack();
+                return false;
+            }
         } catch (\PDOException $e) {
+            $pdo->rollBack();
             echo "Error adding cours: " . $e->getMessage();
             return false;
         }
     }
-    public function getAllCours()
+    
+    
+
+    public function getAllCourss()
     {
         try {
             $pdo = DatabaseConnection::getInstance()->getConnection();
-            $sql = "SELECT count(*) as res_cours_text FROM cours WHERE type = 'text'";
+            $sql = "SELECT count(*) as res_cours_text FROM cours WHERE type = 'text' and enseignant_id= :enseignant_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(":enseignant_id",$this->enseignant_id);
             $stmt = $pdo->prepare($sql);
     
             $stmt->execute();
@@ -58,9 +87,25 @@ class Cours_Text extends Cours
             return false;
         }
     }
+    public function getAllCours()
+    {
+        try {
+            $pdo = DatabaseConnection::getInstance()->getConnection();
+            $sql = "SELECT c.idCours,c.titre,c.description,c.type,ct.nom,ct.idCategory,c.date_creation FROM cours c 
+            JOIN categories ct on ct.idCategory=c.categorie_id 
+            WHERE type = 'text' and enseignant_id= :enseignant_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(":enseignant_id",$this->enseignant_id);
+    
+            $stmt->execute();
+            return $stmt->fetchAll();
+        
+        } catch (\PDOException $e) {
+            echo "Error fetching cours: " . $e->getMessage();
+            return false;
+        }
+    }
     
 
-   
 
 }
-

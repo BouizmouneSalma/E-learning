@@ -8,13 +8,11 @@ use Classes\User;
 class Etudiant extends User
 {
     protected $password;
-    private $status;
 
     public function __construct($idUser, $nom, $prenom, $email, $password, $status = 'active')
     {
-        parent::__construct($idUser, $nom, $prenom, $email, 3); 
+        parent::__construct($idUser, $nom, $prenom, $email,3,$status); 
         $this->password = $password;
-        $this->status = $status;
     }
 
     public function register()
@@ -49,11 +47,48 @@ class Etudiant extends User
         }
     }
 
+    public function statistiqueEtudiants(): void {
+        try {
+            $con = DatabaseConnection::getInstance()->getConnection();
+    
+            $sql = "
+                SELECT u.idUser, u.nom, u.prenom, u.email, 
+                    COUNT(i.cours_id) AS course_count
+                FROM users u
+                LEFT JOIN inscriptions i ON u.idUser = i.etudiant_id
+                WHERE u.idRole = 3 
+                GROUP BY u.idUser";
+    
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+            $students = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    
+            $studentsWithCourses = 0;
+            $studentsWithoutCourses = 0;
+    
+            foreach ($students as $student) {
+                if ($student['course_count'] > 0) {
+                    $studentsWithCourses++;
+                } else {
+                    $studentsWithoutCourses++;
+                }
+            }
+    
+            $static = [
+                'total_client_res' => $studentsWithCourses,
+                'total_client_nres' => $studentsWithoutCourses
+            ];
+    
+        } catch (\PDOException $e) {
+            echo "Error retrieving statistics: " . $e->getMessage();
+        }
+    }
+    
     public static function showAllEtudiant()
     {
         try {
             $con = DatabaseConnection::getInstance()->getConnection();
-            $sql = "SELECT idUser, nom, prenom, email, status, date_creation 
+            $sql = "SELECT idUser, nom, prenom, email, status, date_creation ,idRole
                     FROM users WHERE idRole = 3"; 
             $stmt = $con->prepare($sql);
             $stmt->execute();
@@ -63,18 +98,4 @@ class Etudiant extends User
             return false;
         }
     }
-    // public static function ViewStatistic()
-    // { 
-    //     try {
-    //         $con = DatabaseConnection::getInstance()->getConnection();
-    //         $sql = "SELECT idUser, nom, prenom, email, status, date_creation 
-    //                 FROM users WHERE idRole = 3"; 
-    //         $stmt = $con->prepare($sql);
-    //         $stmt->execute();
-    //         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    //     } catch (\PDOException $e) {
-    //         echo "Error retrieving all Etudiant: " . $e->getMessage();
-    //         return false;
-    //     }
-    // }
 }

@@ -3,67 +3,65 @@ namespace Classes;
 use Classes\DatabaseConnection;
 use PDO;
 
-class User{
+ class User{
     protected $idUser;
     protected $nom;
     protected $prenom;
     protected $email;
     protected $password;
     protected $idRole;
+    protected $status;
 
-
-    public function __construct($idUser,$nom,$prenom,$email,$idRole){
+    public function __construct($idUser,$nom,$prenom,$email,$idRole,$status){
         $this->idUser=$idUser; 
         $this->nom=$nom;
         $this->prenom=$prenom;
         $this->email=$email;
+        $this->status = $status;
         $this->idRole=$idRole;
+
     }
 
-    
-    public static function login($email, $password) {
-        try {
-            $pdo = DatabaseConnection::getInstance()->getConnection();
-            if (!$pdo) {
-                return "Erreur de connexion à la base de données.";
-            }
-    
-            $query = "SELECT idUser, idRole, nom, prenom, password FROM users WHERE email = :email";
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->execute();
-    
-            if ($stmt->rowCount() === 1) {
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                    error_log("Stored hashed password: " . $user['password']);
-                error_log("Password entered: " . $password);
-                
-                if (password_verify($password, $user['password'])) {
-                    return $user; 
-                } else {
-                    error_log("Password verification failed for email: " . $email);
-                    return "Mot de passe incorrect.";
-                }
-            } else {
-                error_log("User not found for email: " . $email);
-                return "Utilisateur introuvable avec cet email.";
-            }
-        } catch (\PDOException $e) {
-            error_log("Database error: " . $e->getMessage());
-            return "Une erreur est survenue lors de la connexion.";
+public static function login($email, $password) {
+    try {
+        $pdo = DatabaseConnection::getInstance()->getConnection();
+        if (!$pdo) {
+            return "Erreur de connexion à la base de données.";
         }
+        $query = "SELECT idUser, idRole, nom, prenom,status, password FROM users WHERE email = :email";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if ($stmt->rowCount() === 1) {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($password, $user['password'])) {
+                return $user; 
+            } else {
+                error_log("Password verification failed for email: " . $email);
+                return "Mot de passe incorrect.";
+            }
+        } else {
+            error_log("User not found for email: " . $email);
+            return "Utilisateur introuvable avec cet email.";
+        }
+    } catch (\PDOException $e) {
+        error_log("Database error: " . $e->getMessage());
+        return "Une erreur est survenue lors de la connexion.";
     }
-    
-    
+}
 
 
+
+    
 public static function logout() {
-    session_start();
-    if (isset($_SESSION['idUser'])) {  
-        session_unset();  
-        session_destroy();  
-        header("Location: ../index.php");  
-        exit();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    session_unset();
+    session_destroy();
+    if (isset($_COOKIE[session_name()])) {
+        setcookie(session_name(), '', time() - 3600, '/');
     }
 }
 

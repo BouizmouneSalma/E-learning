@@ -4,7 +4,7 @@ $error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] 
 $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : [];
 unset($_SESSION['error_message']);
 unset($_SESSION['success_message']);
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -467,7 +467,7 @@ unset($_SESSION['success_message']);
     <script src="../assets/vendors/owl-carousel/owl.carousel.min.js"></script>
     <script src="../assets/vendors/twentytwenty/twentytwenty.js"></script>
     <script src="../assets/vendors/twentytwenty/jquery.event.move.js"></script>
-    <script src="../assets/vendors/parallax/parallax.min.js"></script>
+    <script sqrc="../assets/vendors/parallax/parallax.min.js"></script>
 
 
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM"></script>
