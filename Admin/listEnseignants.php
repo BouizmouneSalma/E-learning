@@ -1,78 +1,26 @@
 <?php
-// require_once '../autoload.php';
-// use Classes\Category;
-// use Classes\Vehicle;
-// session_start();
+require_once '../autoload.php'; 
+use Classes\Enseignant;
+use Classes\Admin;
+session_start();
 
-// if (!isset($_SESSION['id_user']) || (isset($_SESSION['id_role']) && $_SESSION['id_role'] !== 1)) {
-//     header("Location: ../index.html");
-//     exit;
-// }
+if (!isset($_SESSION['id_user']) || (isset($_SESSION['id_role']) && $_SESSION['id_role'] !== 1)) {
+    header("Location: ../index.php");
+    exit;
+}
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     try {
-//         $models = $_POST['model'] ?? [];
-//         $prices = $_POST['price_day'] ?? [];
-//         $availabilities = $_POST['disponibilite'] ?? [];
-//         $transmissionTypes = $_POST['transmissionType'] ?? [];
-//         $fuelTypes = $_POST['fuelType'] ?? [];
-//         $mileages = $_POST['mileage'] ?? [];
-//         $categories = $_POST['category'] ?? [];
-//         $images = $_FILES['imageVeh'] ?? [];
+try {
+    $resultadmin =  Admin::ViewStatistic();
 
-//         if (!is_array($models) || !is_array($prices) || !is_array($availabilities)) {
-//             throw new Exception("Invalid form submission.");
-//         }
-
-//         for ($i = 0; $i < count($models); $i++) {
-//             $imageName = null;
-
-//             if (isset($images['tmp_name'][$i]) && $images['error'][$i] === UPLOAD_ERR_OK) {
-//                 $imageTmp = $images['tmp_name'][$i];
-//                 $originalImageName = basename($images['name'][$i]);
-//                 $sanitizedImageName = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9\._-]/', '', $originalImageName);
-//                 $uploadDir = realpath(__DIR__ . '/../assets/image/') . '/';
-//                 $imagePath = $uploadDir . $sanitizedImageName;
-
-//                 if (!is_dir($uploadDir) && !mkdir($uploadDir, 0755, true)) {
-//                     throw new Exception('Failed to create upload directory.');
-//                 }
-
-//                 if (move_uploaded_file($imageTmp, $imagePath)) {
-//                     $imageName = $sanitizedImageName;
-//                 } else {
-//                     throw new Exception('Failed to move the uploaded image.');
-//                 }
-//             } else {
-//                 throw new Exception('File upload error or no file uploaded.');
-//             }
-
-//             $vehicle = new Vehicle(
-//                 null,
-//                 $models[$i],
-//                 $prices[$i],
-//                 $availabilities[$i],
-//                 $transmissionTypes[$i],
-//                 $fuelTypes[$i],
-//                 $mileages[$i],
-//                 $imageName,
-//                 $categories[$i]
-//             );
-
-//             if (!$vehicle->addVeh()) {
-//                 throw new Exception("Failed to save vehicle $i.");
-//             }
-//         }
-
-//     } catch (Exception $e) {
-//         echo "Error: " . $e->getMessage();
-//     }
-// }
-
-// $result = Vehicle::showStatistic();
-
-
-
+    
+    //pour statistic
+    $Enseignant = new Enseignant(null,null,null,null,null,null);
+    $result = $Enseignant->showAllEnseignant();
+    
+    
+} catch (\Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,10 +40,8 @@
 
 <body class="">
     <div class=" fixed top-0 left-0  w-[230px] h-[100%] z-50 overflow-hidden sidebar ">
-        <a href="" class="logo text-xl font-bold h-[56px] flex items-center text-[#1976D2] z-30 pb-[20px] box-content">
-            <i class=" mt-4 text-xxl max-w-[60px] flex justify-center "><i class="fa-solid fa-car-side"></i></i>
-            <div class="logoname ml-2"><span>Drive
-                </span>Loc</div>
+    <a href="./index.php" class="logo text-xl font-bold h-[56px] flex items-center text-[#1976D2] z-30 pb-[20px] pl-8 box-content">
+        <img src="../assets/images/resources/logo-1.png" alt="" />
         </a>
         <ul class="side-menu w-full mt-12">
     <li class=" h-12 bg-transparent ml-2.5 rounded-l-full p-1">
@@ -130,11 +76,13 @@
     </li>
 </ul>
 
-        <ul class="side-menu w-full mt-12">
-            <li class="h-12 bg-transparent ml-2.5 rounded-l-full p-1">
-                <a href="../Visiteur/logout.php" class="logout">
+<ul class="side-menu w-full mt-12">
+            <li class="h-12 bg-transparent ml-2.2 md:ml-2 rounded-l-full p-1">
+            <form action="../logout.php" method="POST">
+                <button type="submit" name="submit" class="logout flex">
                     <i class='bx bx-log-out-circle'></i> Logout
-                </a>
+                </button>
+            </form>
             </li>
         </ul>
     </div>
@@ -165,8 +113,8 @@
             </a>
             <a href="#" class="profile">
                 <img class="w-[36px] h-[36px] object-cover rounded-full" width="36" height="36"
-                    src=".././assets/image/charaf.png.jfif">
-            </a>
+                src="../assets/charaf.png.jfif">
+                </a>
         </nav>
 
         <main class=" mainn w-full p-[36px_24px] max-h-[calc(100vh_-_56px)]">
@@ -189,50 +137,21 @@
                 <a id="buttonadd" href="#"
                     class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
                     <i class="fa-solid fa-car"></i>
-                    <span>Add Vehicle</span>
+                    <span>Add Enseignant</span>
                 </a>
             </div>
             <!-- insights-->
             <ul class="insights grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-[24px] mt-[36px]">
-                <!-- <li>
-                    <i class="fa-solid fa-user-group"></i>
-                    <span class="info">
-                        <h3>
-                            <?php
-                            // echo $result['total_clients'];
-                            ?>
-                        </h3>
-                        <p>All Vehicles </p>
-                    </span>
-                </li> -->
-                <li><i class="fa-solid fa-file-signature"></i>
-                    <span class="info">
-                        <h3>
-                            <?php
-                            if ($result && isset($result['total_vec_Unavailable'])) {
-                                echo $result['total_vec_Unavailable'];
-                            } else {
-                                echo "No data available.";
-                            }
-                            ?>
-                        </h3>
-                        <p>Vehicles Unavailable</p>
-                    </span>
+                
+                   
+                <li class="flex items-center gap-3 bg-gray-200">
+                    <div class="enrolled-message bg-green-100 text-green-800 p-4 rounded-md shadow-md">
+                        <p>Top 3 Enseignants! <strong class="font-bold text-black">
+                            <?php echo isset($resultadmin['top_3_enseignants']) ? $resultadmin['top_3_enseignants'] : "No data available."; ?>
+                        </strong></p>
+                    </div>
                 </li>
-                <li><i class="fa-solid fa-car-side"></i>
-                    <span class="info">
-                        <h3>
-                            <?php
-                            if ($result && isset($result['total_veh_Available'])) {
-                                echo $result['total_veh_Available'];
-                            } else {
-                                echo "No data available.";
-                            }
-                            ?>
-                        </h3>
-                        <p>Vehicles Available</p>
-                    </span>
-                </li>
+                
 
             </ul>
             <!---- data content ---->
@@ -240,304 +159,96 @@
     <div class="orders flex-grow flex-[1_0_500px]">
         <div class="header flex items-center gap-[16px] mb-[24px]">
             <i class='bx bx-list-check'></i>
-            <h3 class="mr-auto text-[24px] font-semibold">List Vehicles</h3>
+            <h3 class="mr-auto text-[24px] font-semibold">List Enseignants</h3>
             <i class='bx bx-filter'></i>
             <i class='bx bx-search'></i>
         </div>
         <!--- tables---->
         <table class="w-full border-collapse">
-            <thead>
-                <tr>
-                    <th class="pb-3 px-3 text-sm text-left border-b border-grey">Registration number</th>
-                    <th class="pb-3 px-3 text-sm text-left border-b border-grey">Image</th>
-                    <th class="pb-3 px-3 text-sm text-left border-b border-grey">Model</th>
-                    <th class="pb-3 px-3 text-sm text-left border-b border-grey">Category</th>
-                    <th class="pb-3 px-3 text-sm text-left border-b border-grey">Price/day</th>
-                    <th class="pb-3 px-3 text-sm text-left border-b border-grey">Transmission Type</th>
-                    <th class="pb-3 px-5 text-sm text-left border-b border-grey">Fuel Type</th>
-                    <th class="pb-3 px-5 text-sm text-left border-b border-grey">Mileage</th>
-                    <th class="pb-3 px-5 text-sm text-left border-b border-grey">Disponibilite</th>
-                    <th class="pb-3 px-5 text-sm text-left border-b border-grey">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+                        <thead>
+                            <tr class="">
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Registration ID</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Full Name</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Email </th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Date Inscription</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">is Active</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Status</th>
+                                <th class="pb-3 px-5 text-sm text-left border-b border-grey">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            <?php
                 try {
-                    $vehicle = Vehicle::ShowVeh();
-
-                    if ($vehicle) {
-                        foreach ($vehicle as $vh) {
-                            $availabilityColor = $vh['vehicle_availability'] === 'Available' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
-                            $availabilityText = ucfirst($vh['vehicle_availability']);
-                            echo "<tr class='hover:bg-gray-50 transition-all duration-300'>";
-                            echo '<td class="border p-4 text-sm text-gray-700">' . htmlspecialchars($vh['vehicle_id']) . '</td>';
-                            echo '<td class="border p-4"><img src="../assets/image/' . htmlspecialchars($vh['vehicle_image']) . '" alt="Vehicle Image" class="w-24 h-24 rounded-lg shadow-md" /></td>';
-                            echo '<td class="border p-4 text-sm text-gray-700">' . htmlspecialchars($vh['vehicle_model']) . '</td>';
-                            echo '<td class="border p-4 text-sm text-gray-700">' . htmlspecialchars($vh['category_name']) . '</td>';
-                            echo '<td class="border p-4 text-sm text-gray-700">' . htmlspecialchars($vh['vehicle_price_per_day']) . '</td>';
-                            echo '<td class="border p-4 text-sm text-gray-700">' . htmlspecialchars($vh['vehicle_transmission']) . '</td>';
-                            echo '<td class="border p-4 text-sm text-gray-700">' . htmlspecialchars($vh['vehicle_fuel_type']) . '</td>';
-                            echo '<td class="border p-4 text-sm text-gray-700">' . htmlspecialchars($vh['vehicle_mileage']) . '</td>';
-                            echo '<td class="border p-4"><span class="' . $availabilityColor . ' px-2 py-1 rounded-full text-center">' . $availabilityText . '</span></td>';
-                            echo '<td class="border p-4 flex space-x-2">';
-                            echo '<a href="edit_vehicle.php?id=' . $vh['vehicle_id'] . '" class="text-blue-600 hover:text-blue-800 font-semibold">Edit</a>';
-                            echo '|';
-                            echo '<a href="delete_vehicle.php?id_vehicle=' . $vh['vehicle_id'] . '" class="text-red-600 hover:text-red-800 font-semibold" onclick="return confirm(\'Are you sure you want to delete this vehicle?\')">Delete</a>';
-                            echo '|';
-                            echo '<a href="javascript:void(0);" class="text-green-600 hover:text-green-800 font-semibold" onclick="showVehicleDetails(' . $vh['vehicle_id'] . ')">View</a>';
+                    
+                    if (isset($result) && is_array($result)) {
+                        foreach ($result as $r) {
+                            echo "<tr class='hover:bg-gray-100 transition-all duration-300'>";
+                            echo '<td class="border p-4 text-center text-sm font-medium text-gray-700">' . htmlspecialchars($r['idUser']) . '</td>';
+                            echo '<td class="border p-4 text-center text-sm text-gray-700">' . htmlspecialchars($r['nom']) . ' ' . htmlspecialchars($r['prenom']) . '</td>';
+                            echo '<td class="border p-4 text-center text-sm text-gray-700">' . htmlspecialchars($r['email']) . '</td>';
+                            echo '<td class="border p-4 text-center text-sm text-gray-700">' . htmlspecialchars($r['date_creation']) . '</td>';
+                            $statusClass = $r['status'] === 'active' 
+                            ? 'bg-green-200 text-green-800' 
+                            : 'bg-red-200 text-red-800';
+                            echo '<td class="border p-4 text-center text-sm font-medium">';
+                            echo '<span class="px-3 py-1 rounded-full ' . $statusClass . '">'
+                            . htmlspecialchars(ucfirst($r['status'])) . '</span>';
                             echo '</td>';
+                            switch ($r['status_enseignant']) {
+                                case 'accepter':
+                                    $status_class = 'bg-green-200 text-green-800';
+                                    break;
+                                case 'en_attente':
+                                    $status_class = 'bg-yellow-200 text-yellow-800';
+                                    break;
+                                case 'refuser':
+                                    $status_class = 'bg-red-200 text-red-800';
+                                    break;
+                                default:
+                                    $status_class = 'bg-gray-200 text-gray-800'; 
+                                    break;
+                            }
+                            echo '<td class="border p-4 text-center text-sm font-medium">';
+                            echo '<span class="px-3 py-1 rounded-full ' . $status_class . '">';
+                            echo htmlspecialchars(ucfirst($r['status_enseignant']));
+                            echo '</span>';
+                            echo '</td>';
+
+                            
+                            echo '<td class="border p-4 text-center flex justify-center items-center space-x-2">';
+                            echo '<a href="crud/refuser_enseig.php?idUser=' . $r['idUser'] . '&idRole=' . $r['idRole'] . '" 
+                                class="bg-red-100 text-red-500 hover:bg-red-200 p-2 rounded-full transition-all duration-300" title="Ban User">
+                                <i class="fas fa-ban"></i></a>';
+                            echo '<a href="crud/accepter_ensgienant.php?idUser=' . $r['idUser'] . '&idRole=' . $r['idRole'] . '" 
+                                class="bg-green-100 text-green-500 hover:bg-green-200 p-2 rounded-full transition-all duration-300" title="Activate User">
+                                <i class="fas fa-check"></i></a>';
+                            echo '</td>';
+                            
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='8' class='text-center p-4 text-gray-500'>No vehicles available.</td></tr>";
+                        echo "<tr><td colspan='8' class='text-center p-2'>No Client available.</td></tr>";
                     }
+                    
                 } catch (PDOException $e) {
-                    echo "<tr><td colspan='8' class='text-center p-4 text-red-500'>Error: " . $e->getMessage() . "</td></tr>";
+                    echo "<tr><td colspan='8' class='text-center p-2 text-red-500'>Error: " . $e->getMessage() . "</td></tr>";
                 }
-                ?>
+            ?>
             </tbody>
-        </table>
+
+                    </table>
     </div>
 </div>
 
         </main>
     </div>
 
-    <div id="addClientForm"
-        class="add-client-form fixed right-[-100%] rounded-xl w-full max-w-[400px] h-[580px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px] bg-white">
-        <form action="listVehicle.php" method="POST" enctype="multipart/form-data"
-            class="flex flex-col gap-4 overflow-y-auto h-full p-6 pb-20" id="vehicleForm">
-            <!-- Header -->
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-semibold">Add Vehicles</h2>
-                <button type="button" id="closeForm"
-                    class="close-btn bg-red-500 text-white font-extrabold px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">
-                    X
-                </button>
-            </div>
-
-            <!-- Dynamic Vehicle Sections -->
-            <div id="vehicleSections">
-                <!-- Template for Vehicle -->
-                <div class="vehicle-section border-b-2 pb-4 mb-4">
-                    <h3 class="text-lg font-semibold mb-2">Vehicle Details</h3>
-                    <div class="form-group flex flex-col">
-                        <label for="category" class="text-sm text-gray-700 mb-1">Category</label>
-                        <select name="category[]" class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
-                            <?php
-                            try {
-
-                                $category = new Category(null, null, null);
-                                $resultCat = $category->ShowCategory();
-
-                                if ($resultCat) {
-                                    foreach ($resultCat as $cat) {
-                                        echo '<option class="text-black" value="' . htmlspecialchars($cat['id_category']) . '">' . htmlspecialchars($cat['name']) . '</option>';
-                                    }
-                                } else {
-                                    echo '<option value="">No categories found</option>';
-                                }
-                            } catch (\PDOException $e) {
-                                echo '<option value="">Error loading categories</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group flex flex-col">
-                        <label for="model" class="text-sm text-gray-700 mb-1">Model</label>
-                        <input name="model[]" type="text" id="model" placeholder="Enter the vehicle model"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-                    </div>
-
-                    <!-- Price Per Day -->
-                    <div class="form-group flex flex-col">
-                        <label for="price_day" class="text-sm text-gray-700 mb-1">Price/day</label>
-                        <input type="number" id="price_day" name="price_day[]" placeholder="Enter the vehicle price/day"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-                    </div>
-
-                    <!-- Availability -->
-                    <div class="form-group flex flex-col">
-                        <label for="disponibilite" class="text-sm text-gray-700 mb-1">Availability</label>
-                        <select name="disponibilite[]" id="disponibilite"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
-                            <option value="available">Available</option>
-                            <option value="unavailable">Unavailable</option>
-                        </select>
-                    </div>
-
-                    <!-- Transmission Type -->
-                    <div class="form-group flex flex-col">
-                        <label for="transmissionType" class="text-sm text-gray-700 mb-1">Transmission Type</label>
-                        <select name="transmissionType[]" id="transmissionType"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
-                            <option value="automatic">Automatic</option>
-                            <option value="manual">Manual</option>
-                        </select>
-                    </div>
-
-                    <!-- Fuel Type -->
-                    <div class="form-group flex flex-col">
-                        <label for="fuelType" class="text-sm text-gray-700 mb-1">Fuel Type</label>
-                        <select name="fuelType[]" id="fuelType"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
-                            <option value="petrol">Petrol</option>
-                            <option value="diesel">Diesel</option>
-                            <option value="electric">Electric</option>
-                        </select>
-                    </div>
-
-                    <!-- Mileage -->
-                    <div class="form-group flex flex-col">
-                        <label for="mileage" class="text-sm text-gray-700 mb-1">Mileage</label>
-                        <input type="number" name="mileage[]" id="mileage" placeholder="Enter the vehicle mileage"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-                    </div>
-
-                    <!-- Vehicle Image -->
-                    <div class="form-group flex flex-col">
-                        <label for="imageVeh" class="text-sm text-gray-700 mb-1">Vehicle Image</label>
-                        <input type="file" name="imageVeh[]" multiple id="imageVeh" accept="image/*"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Add/Remove Vehicle Buttons -->
-            <div class="flex justify-between items-center">
-                <button type="button" id="addVehicle"
-                    class="bg-green-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">
-                    Add Vehicle
-                </button>
-                <button type="button" id="removeVehicle"
-                    class="bg-red-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">
-                    Remove Vehicle
-                </button>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit"
-                class="submit-btn bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out mt-4"
-                name="submit">Submit Vehicles</button>
-        </form>
-    </div>
+    
 
 
     <!-- Edit Car Form -->
-    <?php
-    if (isset($_GET['id_vehicle'])) {
-        $id_vehicle = $_GET['id_vehicle'];
-
-        try {
-            $car = Vehicle::ShowDetails($id_vehicle);
-
-        } catch (\PDOException $e) {
-            echo '<p class="text-red-500">Error fetching vehicle details: ' . $e->getMessage() . '</p>';
-        }
-    }
-
-
-    ?>
-    <div id="editCarForm"
-        class="edit-car-form hidden fixed right-[-100%] rounded-xl w-full max-w-[400px] h-[580px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px] bg-white">
-        <form action="" method="post" enctype="multipart/form-data"
-            class="flex flex-col gap-4 overflow-y-auto h-full p-6 pb-20">
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-semibold">Edit Car</h2>
-                <button type="button" id="closeEditForm"
-                    class="close-btn bg-red-500 text-white font-extrabold px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">
-                    X
-                </button>
-            </div>
-
-            <input type="hidden" name="id_vehicle" value="<?php echo htmlspecialchars($car['id_vehicle'] ?? ''); ?>">
-
-            <div class="form-group flex flex-col">
-                <label for="category" class="text-sm text-gray-700 mb-1">Category</label>
-                <select name="category" id="category"
-                    class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
-                    <?php
-                    try {
-                        $category = new Category(null, null, null);
-                        $resultCat = $category->ShowCategory();
-
-                        if ($resultCat) {
-                            foreach ($resultCat as $cat) {
-                                $selected = isset($car['category']) && $cat['id_category'] == $car['category'] ? 'selected' : '';
-                                echo '<option value="' . htmlspecialchars($cat['id_category']) . '" ' . $selected . '>' . htmlspecialchars($cat['name']) . '</option>';
-                            }
-                        } else {
-                            echo '<option value="">No categories found</option>';
-                        }
-                    } catch (\PDOException $e) {
-                        echo "Error showing Category: " . $e->getMessage();
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <div class="form-group flex flex-col">
-                <label for="model" class="text-sm text-gray-700 mb-1">Model</label>
-                <input name="model" type="text" id="model" value="<?php echo htmlspecialchars($car['model'] ?? ''); ?>"
-                    class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-            </div>
-
-            <div class="form-group flex flex-col">
-                <label for="price_day" class="text-sm text-gray-700 mb-1">Price/day</label>
-                <input type="number" id="price_day" name="price_day"
-                    value="<?php echo htmlspecialchars($car['price_per_day'] ?? ''); ?>"
-                    class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-            </div>
-
-            <!-- Continue with similar pattern for other fields -->
-            <div class="form-group flex flex-col">
-                <label for="mileage" class="text-sm text-gray-700 mb-1">Mileage</label>
-                <input type="number" name="mileage" id="mileage"
-                    value="<?php echo htmlspecialchars($car['mileage'] ?? ''); ?>"
-                    class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-            </div>
-
-            <div class="form-group flex flex-col">
-                <label for="imageVeh" class="text-sm text-gray-700 mb-1">Vehicle Image</label>
-                <input type="file" name="imageVeh" id="imageVeh" accept="image/*"
-                    class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
-                <p class="text-sm text-gray-500 mt-1">Leave empty to keep the current image.</p>
-            </div>
-
-            <button type="submit"
-                class="submit-btn bg-green-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out"
-                name="submit">Save Changes</button>
-        </form>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const buttonsEdit = document.querySelectorAll('.buttonedit');
-            const editForm = document.getElementById('editCarForm');
-            const closeEditForm = document.getElementById('closeEditForm');
-
-            if (editForm) {
-                buttonsEdit.forEach(button => {
-                    button.addEventListener('click', function (e) {
-                        e.preventDefault();
-
-                        editForm.classList.remove('hidden');
-                        editForm.style.right = "0";
-                    });
-                });
-
-                if (closeEditForm) {
-                    closeEditForm.addEventListener('click', () => {
-                        editForm.style.right = "-100%";
-                    });
-                }
-            } else {
-                console.error('Edit form not found');
-            }
-        });
-
-    </script>
+    
+   
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function showVehicleDetails(id) {
@@ -558,24 +269,7 @@
         }
     </script>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const vehicleSections = document.getElementById('vehicleSections');
-            const addVehicleButton = document.getElementById('addVehicle');
-            const removeVehicleButton = document.getElementById('removeVehicle');
-
-            addVehicleButton.addEventListener('click', () => {
-                const newSection = vehicleSections.firstElementChild.cloneNode(true);
-                vehicleSections.appendChild(newSection);
-            });
-
-            removeVehicleButton.addEventListener('click', () => {
-                if (vehicleSections.children.length > 1) {
-                    vehicleSections.lastElementChild.remove();
-                }
-            });
-        });
-    </script>
+    
     <script src=".././assets/main.js"></script>
 </body>
 

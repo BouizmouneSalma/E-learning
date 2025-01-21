@@ -3,17 +3,17 @@ require_once '../autoload.php';
 use Classes\Etudiant;
 session_start();
 
-// if (!isset($_SESSION['id_user']) || (isset($_SESSION['id_role']) && $_SESSION['id_role'] !== 1)) {
-//     header("Location: ../index.html");
-//     exit;
-// }
+if (!isset($_SESSION['id_user']) || (isset($_SESSION['id_role']) && $_SESSION['id_role'] !== 1)) {
+    header("Location: ../index.php");
+    exit;
+}
 
 try {
    
     //pour statistic
     $Etudiant = new Etudiant(null,null,null,null,null,null);
     $result = $Etudiant->showAllEtudiant();
-    // $static= $admin->ViewStatistic();
+    $static= $Etudiant->statistiqueEtudiants();
     
     
 } catch (\Exception $e) {
@@ -45,10 +45,8 @@ try {
 <body class="">
     <!-- Side Bar -->
     <div class=" fixed top-0 left-0  w-[230px] h-[100%] z-50 overflow-hidden sidebar ">
-        <a href="" class="logo text-xl font-bold h-[56px] flex items-center text-[#1976D2] z-30 pb-[20px] box-content">
-            <i class=" mt-4 text-xxl max-w-[60px] flex justify-center "><i class="fa-solid fa-car-side"></i></i>
-            <div class="logoname ml-2"><span>Drive
-            </span>Loc</div>
+    <a href="./index.php" class="logo text-xl font-bold h-[56px] flex items-center text-[#1976D2] z-30 pb-[20px] pl-8 box-content">
+        <img src="../assets/images/resources/logo-1.png" alt="" />
         </a>
         <ul class="side-menu w-full mt-12">
     <li class=" h-12 bg-transparent ml-2.5 rounded-l-full p-1">
@@ -83,11 +81,14 @@ try {
     </li>
 </ul>
 
-        <ul class="side-menu w-full mt-12">
-            <li class="h-12 bg-transparent ml-2.5 rounded-l-full p-1">
-                <a href="../Visiteur/logout.php" class="logout">
+
+<ul class="side-menu w-full mt-12">
+            <li class="h-12 bg-transparent ml-2.2 md:ml-2 rounded-l-full p-1">
+            <form action="../logout.php" method="POST">
+                <button type="submit" name="submit" class="logout flex">
                     <i class='bx bx-log-out-circle'></i> Logout
-                </a>
+                </button>
+            </form>
             </li>
         </ul>
     </div>
@@ -116,7 +117,8 @@ try {
                     class="count absolute top-[-6px] right-[-6px] w-[20px] h-[20px] bg-[#D32F2F] text-[#f6f6f6] border-2 border-[#f6f6f9] font-semibold text-[12px] flex items-center justify-center rounded-full ">12</span>
             </a>
             <a href="#" class="profile">
-            <img class="w-[36px] h-[36px] object-cover rounded-full" width="36" height="36" src=".././assets/image/charaf.png.jfif">
+            <img class="w-[36px] h-[36px] object-cover rounded-full" width="36" height="36"  src="../assets/charaf.png.jfif">
+
             </a>
         </nav>
 
@@ -212,10 +214,15 @@ try {
                             echo '<td class="border p-4 text-center text-sm text-gray-700">' . htmlspecialchars($r['nom']) . '' . htmlspecialchars($r['prenom']) . '</td>';
                             echo '<td class="border p-4 text-center text-sm text-gray-700">' . htmlspecialchars($r['email']) . '</td>';
                             echo '<td class="border p-4 text-center text-sm text-gray-700">' . htmlspecialchars($r['date_creation']) . '</td>';
-                            echo '<td class="border p-4 text-center text-sm text-gray-700">' . htmlspecialchars($r['status']) . '</td>';
-                            echo '<td class="border p-4 text-center">';
-                            echo '<a href="banner_user.php?idUser=' . $r['idUser'] . '" class="buttonaddd bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300 mx-2">Banner Client</a>';
-                            echo '<a href="accepter_user.php?idUser=' . $r['idUser'] . '" class="buttonaddd bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-all duration-300 mx-2">Accepter Client</a>';
+                            $statusClass = $r['status'] === 'active' 
+                            ? 'bg-green-200 text-green-800' 
+                            : 'bg-red-200 text-red-800';
+                        echo '<td class="border p-4 text-center text-sm font-medium">';
+                        echo '<span class="px-3 py-1 rounded-full ' . $statusClass . '">'
+                            . htmlspecialchars(ucfirst($r['status'])) . '</span>';
+                        echo '</td>';                            echo '<td class="border p-4 text-center">';
+                            echo '<a href="crud/banner_user.php?idUser=' . $r['idUser'] . '&idRole=' . $r['idRole'] . '" class=" bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-all duration-300 mx-2">Banner Etudient</a>';
+                            echo '<a href="crud/activie_user.php?idUser=' . $r['idUser'] . '&idRole=' . $r['idRole'] . '" class="  bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300 mx-2">Active Etudient</a>';
                             echo '</td>';
                             echo "</tr>";
                         }
