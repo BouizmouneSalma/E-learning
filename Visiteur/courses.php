@@ -1,6 +1,26 @@
+<?php
+require_once '../autoload.php';
+use Classes\Categorie;
+use Classes\Cours;
+session_start();
+
+$cours=Cours::ShowCours();
+
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 8; 
+$courses = Cours::ShowCours($currentPage, $limit);
+$totalCourses = Cours::getTotalCourses();
+$totalPages = ceil($totalCourses / $limit); 
+
+
+// Fetch categories
+$categories = Categorie::showCategories();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,6 +56,198 @@
     <!-- template styles -->
     <link rel="stylesheet" href="../assets/css/zilom.css" />
     <link rel="stylesheet" href="../assets/css/zilom-responsive.css" />
+    <style>
+
+        /* General Search Popup Styling */
+.search-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.search-popup__content {
+    background: #fff;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+.search-button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-button:hover {
+    background: #0056b3;
+}
+
+/* Search Results Grid */
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.search-results .course-card {
+    background: #f9f9f9;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-results .course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.course-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.course-card-content {
+    padding: 15px;
+}
+
+.course-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.course-card-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.course-card-title a:hover {
+    color: #007bff;
+}
+
+.course-card-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.course-card-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+        .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 10px 15px;
+    margin: 0 5px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+}
+
+.pagination a.active {
+    background-color: indigo;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+/**pour logout */
+     
+.logout {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    border: none;
+    outline: none !important;
+    background-color: red;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 20px 10px;
+    border-radius: 8px;
+    transition: all 0.3s linear;
+    overflow: hidden;
+    letter-spacing: 0.1em;
+    z-index: 1;
+}
+.logout:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: var(--thm-black);
+    transition-delay: .1s;
+    transition-timing-function: ease-in-out;
+    transition-duration: .5s;
+    transition-property: all;
+    opacity: 1;
+    transform-origin: top;
+    transform-style: preserve-3d;
+    transform: scaleY(0);
+    z-index: -1;
+}
+
+.logout:hover:after {
+    opacity: 1;
+    transform: scaleY(1.0);
+}
+
+.logout:hover {
+    color: #ffffff;
+}
+
+    </style>
 </head>
 
 <body>
@@ -82,7 +294,7 @@
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="mailto:salmabouizmoune@gmail.com">salmabouizmoune@gmail.com</a></p>
+                                            <p><a href="mailto:charafeddinetbibzat@gmail.com">charafeddinetbibzat@gmail.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
@@ -126,10 +338,31 @@
                                 <div class="right">
                                     <div class="main-menu__right">
                                         <div class="main-menu__right-login-register">
+                                        <?php 
+                                        
+                                    
+                                            if(!isset($_SESSION['id_user'])){
+                                            ?>
                                             <ul class="list-unstyled">
-                                                <li><a href="login.php">Login</a></li>
-                                                <li><a href="register.php">Register</a></li>
+                                                <li><a href="./login.php">Login</a></li>
+                                                <li><a href="./register.php">Register</a></li>
                                             </ul>
+                                            <?php }else { 
+
+                                            ?>
+                                                <div class="b-flex justify-content-end flex ">
+                                               
+                                                <div>
+                                                    <form action="../logout.php" method="POST">
+                                                    <span><?php if(isset ($_SESSION['user']))
+                                                {echo $_SESSION['fullname'];}?></span>
+                                                        <button type="submit" name="submit" class="logout ">Logout</button>
+                                                    </form>
+                                                </div>
+                                                    
+                                            </div>
+                                            <?php }
+                                            ?>
                                         </div>
                                         <div class="main-menu__right-cart-search">
                                             <div class="main-menu__right-cart-box">
@@ -191,7 +424,6 @@
     <!--Page Header End-->
 
 
-
     <!--Courses One Start-->
     <section class="courses-one courses-one--courses">
         <div class="container">
@@ -200,321 +432,87 @@
                 <h2 class="section-title__title">Explore Courses</h2>
             </div>
 
-            <div class="row">
-                <!--Start case-studies-one Top-->
-                <div class="courses-one--courses__top">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="courses-one--courses__menu-box">
-                            <ul class="project-filter clearfix post-filter has-dynamic-filters-counter list-unstyled">
-                                <li data-filter=".filter-item" class="active"><span class="filter-text">All</span></li>
-                                <li data-filter=".featured"><span class="filter-text">Featured</span></li>
-                                <li data-filter=".business"><span class="filter-text">Business</span></li>
-                                <li data-filter=".photography"><span class="filter-text">Photography</span></li>
-                                <li data-filter=".development"><span class="filter-text">Development</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End case-studies-one Top-->
+
+
+<div class="row">
+    <div class="courses-one--courses__top">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="courses-one--courses__menu-box">
+                <ul class="project-filter clearfix post-filter has-dynamic-filters-counter list-unstyled">
+                    <li data-filter=".filter-item" class="active"><span class="filter-text">All</span></li>
+                    <?php
+                    if ($categories && count($categories) > 0) {
+                        foreach ($categories as $category) {
+                            echo '<li data-filter=".'. htmlspecialchars($category['nom']) .'"><span class="filter-text">'. htmlspecialchars($category['nom']) .'</span></li>';
+                        }
+                    } else {
+                        echo "<li>No categories available.</li>";
+                    }
+                    ?>
+                </ul>
             </div>
+        </div>
+    </div>
+</div>
 
-
-            <div class="row filter-layout masonary-layout">
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item development business">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img1.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>Featured</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img1.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Kevin Martin</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
+<div class="row filter-layout masonary-layout">
+    <?php
+    if ($courses && count($courses) > 0) {
+        foreach ($courses as $courseItem) {
+            $imageSrc = ($courseItem['type'] === 'text') 
+                ? '../assets/images/backgrounds/text.webp' 
+                : '../assets/images/backgrounds/video.webp';
+            ?>
+            <div class="col-xl-3 col-lg-6 col-md-6 filter-item <?= htmlspecialchars($courseItem['type']) ?>">
+                <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
+                    <div class="courses-one__single-img">
+                        <img src="<?= htmlspecialchars($imageSrc) ?>" alt="Course Image"/>
+                        <div class="overlay-text">
+                            <p><?= htmlspecialchars($courseItem['type']) ?></p>
                         </div>
                     </div>
-                </div>
-                <!--End Single Courses One-->
+                    <div class="courses-one__single-content">
+                        <h6 class="courses-one__single-content-name"><?= htmlspecialchars($courseItem['fullname']) ?></h6>
+                        <h4 class="courses-one__single-content-title">
+                            <a href="course-details.php?id=<?= htmlspecialchars($courseItem['idCours']) ?>">
+                                <?= htmlspecialchars($courseItem['titre']) ?>
+                            </a>
+                        </h4>
+                        <p class="courses-one__single-content-description"><?= htmlspecialchars($courseItem['description']) ?></p>
+                        <div class="courses-one__single-content-price">$<?= htmlspecialchars(rand(50, 5000)) ?>.00</div>
 
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item development business featured">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img2.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>free</p>
+                        <?php if (!empty($courseItem['tags'])): ?>
+                            <div class="course-tags">
+                                <strong>Tags: </strong>
+                                <?= htmlspecialchars($courseItem['tags']) ?>
                             </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img2.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Christine Eve</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item photography filter-item development">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img3.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>Featured</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img3.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">David Cooper</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item photography development">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img4.jpg" alt=""/>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img4.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Sarah Albert</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item development photography featured">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img5.jpg" alt=""/>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img5.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Sarah Albert</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item business development photography">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img6.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>Featured</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img6.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Kevin Martin</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item featured photography development">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img7.jpg" alt=""/>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img7.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Christine Eve</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
-
-                <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item photography featured">
-                    <div class="courses-one__single wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="../assets/images/resources/courses-v1-img8.jpg" alt=""/>
-                            <div class="overlay-text">
-                                <p>free</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="../assets/images/resources/courses-v1-overlay-img8.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">David Cooper</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.php">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
-                                </div>
-                            </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Courses One-->
             </div>
+            <?php
+        }
+    } else {
+        echo "<p>No courses available.</p>";
+    }
+    ?>
+</div>
+
+<div class="pagination">
+    <?php if ($currentPage > 1): ?>
+        <a href="?page=<?= $currentPage - 1 ?>" class="prev">Previous</a>
+    <?php endif; ?>
+    
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <a href="?page=<?= $i ?>" class="<?= ($i == $currentPage) ? 'active' : '' ?>"><?= $i ?></a>
+    <?php endfor; ?>
+    
+    <?php if ($currentPage < $totalPages): ?>
+        <a href="?page=<?= $currentPage + 1 ?>" class="next">Next</a>
+    <?php endif; ?>
+</div>
+
+
         </div>
     </section>
     <!--Courses One End-->
@@ -667,24 +665,26 @@
     </div>
     <!-- /.mobile-nav__wrapper -->
 
-
-
     <div class="search-popup">
-        <div class="search-popup__overlay search-toggler"></div>
-        <!-- /.search-popup__overlay -->
-        <div class="search-popup__content">
-            <form action="#">
-                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-                <input type="text" id="search" placeholder="Search Here..." />
-                <button type="submit" aria-label="search submit" class="thm-btn2">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-            </form>
-        </div>
-        <!-- /.search-popup__content -->
-    </div>
-    <!-- /.search-popup -->
+    <div class="search-popup__overlay search-toggler"></div>
+    <div class="search-popup__content">
+        <form id="search-form">
+            <label for="search" class="sr-only">Search here</label>
+            <input type="text" id="search" name="search" placeholder="Search Here..." class="search-input" />
+            <button type="submit" aria-label="search submit" class="thm-btn2">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
 
+        <div id="search-results" class="search-results pt-2">
+            <p class="placeholder-text">Search for courses to see results...</p>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- /.search-popup -->
 
 
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
@@ -716,6 +716,54 @@
     <!-- template js -->
     <script src="../assets/js/zilom.js"></script>
 
+    <script>
+    document.getElementById("search-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const searchQuery = document.getElementById("search").value; 
+    const resultsContainer = document.getElementById("search-results");
+
+    resultsContainer.innerHTML = '<p class="col-12 text-center">Searching...</p>';
+
+    fetch("search_handler.php?search=" + encodeURIComponent(searchQuery))
+        .then(response => response.json()) 
+        .then(data => {
+            resultsContainer.innerHTML = "";
+
+            if (data.length > 0) {
+                data.forEach(course => {
+                    const courseCard = `
+                        <div class="col-xl-3 col-lg-6 col-md-2 bg-white filter-item ${course.type}">
+                            <div class="courses-one__single bg-white">
+                                <div class="courses-one__single-img">
+                                    <img src="${course.type === 'text' ? '../assets/images/backgrounds/text.webp' : '../assets/images/backgrounds/video.webp'}" alt="Course Image" />
+                                    <div class="overlay-text">
+                                        <p>${course.type}</p>
+                                    </div>
+                                </div>
+                                <div class="courses-one__single-content">
+                                    <h6 class="courses-one__single-content-name">${course.fullname}</h6>
+                                    <h4 class="courses-one__single-content-title">
+                                        <a href="course-details.php?id=${course.idCours}">${course.titre}</a>
+                                    </h4>
+                                    <p class="courses-one__single-content-description">${course.description}</p>
+                                    <div class="courses-one__single-content-price">$${course.price}.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    resultsContainer.innerHTML += courseCard;
+                });
+            } else {
+                resultsContainer.innerHTML = `<p class="col-12 text-center">No results found for "${searchQuery}"</p>`;
+            }
+        })
+        .catch(error => {
+            resultsContainer.innerHTML = `<p class="col-12 text-center text-danger">Error fetching results. Please try again later.</p>`;
+            console.error("Error:", error);
+        });
+});
+
+</script>
 
 </body>
 

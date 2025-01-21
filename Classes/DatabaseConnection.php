@@ -1,5 +1,4 @@
 <?php
-
 namespace Classes;
 
 class DatabaseConnection {
@@ -19,6 +18,7 @@ class DatabaseConnection {
             die("Database connection failed: " . $e->getMessage());
         }
     }
+    
 
     public static function getInstance() {
         if (self::$instance == null) {
@@ -30,4 +30,6 @@ class DatabaseConnection {
     public function getConnection() {
         return $this->connection;
     }
+
+    private function clone() {}
 }

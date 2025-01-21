@@ -53,6 +53,7 @@ class Tag {
             return false;
         }
     }
+   
 
     public static function GetTagById($idTag) {
         $pdo = DatabaseConnection::getInstance()->getConnection();

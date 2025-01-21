@@ -1,14 +1,17 @@
 <?php
 
-include_once __DIR__ . '/classes/DatabaseConnection.php';use Classes\Cours;
-include_once __DIR__ . '/classes/Cours_Tags.php';
+namespace Classes;
+
+use Classes\DatabaseConnection;
+use Classes\Cours;
+use Classes\Cours_Tags;
 class Cours_Text extends Cours
 {
     private $contenu;
 
     public function __construct($titre, $description, $contenu , $categorie_id , $enseignant_id,$type,$tags)
     {
-        parent::__construct($titre, $description, $categorie_id, $enseignant_id,$type,$tags);
+        parent::__construct($titre, $description, $enseignant_id,$type,$tags, $categorie_id);
         $this->contenu = $contenu;
     }
 
@@ -59,31 +62,30 @@ class Cours_Text extends Cours
     }
     
     
-
-    public function getAllCourss()
-    {
-        try {
-            $pdo = DatabaseConnection::getInstance()->getConnection();
-            $sql = "SELECT count(*) as res_cours_text FROM cours WHERE type = 'text' and enseignant_id= :enseignant_id";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(":enseignant_id",$this->enseignant_id);
-            $stmt = $pdo->prepare($sql);
+    // public function getAllCourss()
+    // {
+    //     try {
+    //         $pdo = DatabaseConnection::getInstance()->getConnection();
+    //         $sql = "SELECT count(*) as res_cours_text FROM cours WHERE type = 'text' and enseignant_id= :enseignant_id";
+    //         $stmt = $pdo->prepare($sql);
+    //         $stmt->bindValue(":enseignant_id",$this->enseignant_id);
+    //         $stmt = $pdo->prepare($sql);
     
-            $stmt->execute();
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+    //         $stmt->execute();
+    //         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
             
-            if ($result) {
-                return $result;
-            } else {
-                return [
-                    'res_cours_text' => 0
-                ];
-            }
-        } catch (\PDOException $e) {
-            echo "Error fetching cours: " . $e->getMessage();
-            return false;
-        }
-    }
+    //         if ($result) {
+    //             return $result;
+    //         } else {
+    //             return [
+    //                 'res_cours_text' => 0
+    //             ];
+    //         }
+    //     } catch (\PDOException $e) {
+    //         echo "Error fetching cours: " . $e->getMessage();
+    //         return false;
+    //     }
+    // }
     public function getAllCours()
     {
         try {
@@ -104,5 +106,6 @@ class Cours_Text extends Cours
     }
     
 
+   
 
 }

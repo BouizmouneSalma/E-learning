@@ -1,21 +1,57 @@
 <?php
 
-include_once __DIR__ . '/classes/DatabaseConnection.php';
-include_once __DIR__ . '/classes/User.php';
+namespace Classes;
+
+
+use Classes\User;
+use Classes\DatabaseConnection;
 
 class Admin extends User {
-    public function ViewStatistic() {
+    public static function ViewStatistic() {
         try {
             $pdo = DatabaseConnection::getInstance()->getConnection();
             $query = "
-            SELECT 
-                (SELECT COUNT(*) FROM users WHERE idRole = 2) AS total_enseignant,
-                (SELECT COUNT(*) FROM users WHERE idRole = 3) AS total_etudient,
-                (SELECT COUNT(*) FROM cours) AS total_cours,
-                (SELECT COUNT(*) FROM users WHERE status = 'activie') AS total_users_activie
-        ";
-        
-        
+                SELECT 
+                    -- Total  enseignants
+                    (SELECT COUNT(*) FROM users WHERE idRole = 2) AS total_enseignant,
+                    
+                    -- Total  etudiants
+                    (SELECT COUNT(*) FROM users WHERE idRole = 3) AS total_etudient,
+                    
+                    -- Total cours
+                    (SELECT COUNT(*) FROM cours) AS total_cours,
+                    
+                    -- Total  active users
+                    (SELECT COUNT(*) FROM users WHERE status = 'active') AS total_users_activie,
+                    
+                    -- Courses per category
+                    (SELECT GROUP_CONCAT( nom,' => ',idCategory ORDER BY idCategory ASC) 
+                     FROM categories) AS courses_per_category,
+                     
+                    -- Course with the most students
+                    (SELECT titre 
+                     FROM cours 
+                     WHERE idCours = 
+                        (SELECT cours_id 
+                         FROM inscriptions 
+                         GROUP BY cours_id 
+                         ORDER BY COUNT(*) DESC 
+                         LIMIT 1)
+                    ) AS course_with_most_students,
+                    
+                    -- Top 3 enseignants
+                    (SELECT GROUP_CONCAT(nom ORDER BY total_courses DESC ) 
+                     FROM (
+                         SELECT u.nom, COUNT(c.idCours) AS total_courses
+                         FROM users u
+                         LEFT JOIN cours c ON u.idUser = c.enseignant_id
+                         WHERE u.idRole = 2
+                         GROUP BY u.idUser
+                         ORDER BY total_courses DESC
+                     ) AS top_enseignants
+                    ) AS top_3_enseignants
+            ";
+    
             $stmt = $pdo->query($query);
     
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -28,6 +64,9 @@ class Admin extends User {
                     'total_etudient' => 0,
                     'total_cours' => 0,
                     'total_users_activie' => 0,
+                    'courses_per_category' => 'No data available.',
+                    'course_with_most_students' => 'No data available.',
+                    'top_3_enseignants' => 'No data available.'
                 ];
             }
         } catch (\PDOException $e) {
@@ -35,6 +74,7 @@ class Admin extends User {
             return false; 
         }
     }
+    
     
 
     public function bannerUser() {

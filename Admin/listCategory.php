@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addCategory'])) {
             if (!move_uploaded_file($categoryImage['tmp_name'], $targetFile)) {
                 throw new Exception('Failed to upload the image.');
             }
-            $category = new Categorie(null, $categoryName, $categoryDescription, $targetFile);
+            $category = new Categorie($categoryName, $categoryDescription, $targetFile,null);
             $category->addCategory();
             header('Location: listCategory.php');
             exit();
@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addCategory'])) {
                     class="count absolute top-[-6px] right-[-6px] w-[20px] h-[20px] bg-[#D32F2F] text-[#f6f6f6] border-2 border-[#f6f6f9] font-semibold text-[12px] flex items-center justify-center rounded-full ">12</span>
             </a>
             <a href="#" class="profile">
-            <img class="w-[36px] h-[36px] object-cover rounded-full" width="36" height="36" src="../assets/img.png.jfif">
+            <img class="w-[36px] h-[36px] object-cover rounded-full" width="36" height="36" src="../assets/charaf.png.jfif">
 
             </a>
         </nav>

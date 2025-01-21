@@ -7,6 +7,11 @@ use PDO;
  
 class Inscription
 {
+    /**
+     * Fetch all inscriptions with course, teacher, and student details.
+     * 
+     * @return array|false
+     */
     public function getAllInscriptions()
     {
         try {

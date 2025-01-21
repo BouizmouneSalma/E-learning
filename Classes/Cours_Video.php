@@ -2,10 +2,9 @@
 
 namespace Classes;
 
-include_once __DIR__ . '/classes/DatabaseConnection.php';
-include_once __DIR__ . '/classes/Cours.php';
-include_once __DIR__ . '/classes/Cours_Tags.php';
-
+use Classes\DatabaseConnection;
+use Classes\Cours;
+use Classes\Cours_Tags;
 
 class Cours_Video extends Cours
 {
@@ -13,7 +12,7 @@ class Cours_Video extends Cours
 
     public function __construct($titre, $description, $categorie_id , $enseignant_id, $contenu,$type,$tags)
     {
-        parent::__construct($titre, $description, $categorie_id, $enseignant_id,$type,$tags);
+        parent::__construct($titre, $description, $enseignant_id,$type,$tags, $categorie_id);
         $this->contenu = $contenu;
     }
    

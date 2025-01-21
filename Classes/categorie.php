@@ -1,5 +1,8 @@
 <?php
-include_once __DIR__ . '/classes/DatabaseConnection.php';
+
+namespace Classes;
+
+use Classes\DatabaseConnection;
 
 class Categorie
 {
@@ -8,7 +11,7 @@ class Categorie
     private $description;
     private $imageCategory;
 
-    public function __construct($idCategory = null, $nom, $description, $imageCategory)
+    public function __construct( $nom, $description, $imageCategory,$idCategory = null)
     {
         $this->idCategory = $idCategory;
         $this->nom = $nom;

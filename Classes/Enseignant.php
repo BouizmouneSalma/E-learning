@@ -1,9 +1,10 @@
 <?php
 
+namespace Classes;
 
-include_once __DIR__ . '/classes/DatabaseConnection.php';
-include_once __DIR__ . '/classes/User.php';
-
+use Classes\DatabaseConnection;
+use Classes\User;
+use PDO;
 class Enseignant extends User
 {
     protected $password;
@@ -51,10 +52,8 @@ class Enseignant extends User
         $sql = "INSERT INTO users (nom, prenom, email, password, status, date_creation, idRole, status_enseignant) 
                 VALUES (:nom, :prenom, :email, :password, :status, :dateInscription, :idRole, :status_enseignant)";
         $stmt = $con->prepare($sql);
-
         $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
         $idRole = 2; 
-
         $stmt->bindParam(':nom', $this->nom, \PDO::PARAM_STR);
         $stmt->bindParam(':prenom', $this->prenom, \PDO::PARAM_STR);
         $stmt->bindParam(':email', $this->email, \PDO::PARAM_STR);
@@ -63,7 +62,6 @@ class Enseignant extends User
         $stmt->bindParam(':dateInscription', $this->dateInscription, \PDO::PARAM_STR);
         $stmt->bindParam(':idRole', $idRole, \PDO::PARAM_INT);
         $stmt->bindParam(':status_enseignant', $this->status_enseignant, \PDO::PARAM_STR);
-
         if ($stmt->execute()) {
             $this->idUser = $con->lastInsertId();
             return true;

@@ -1,4 +1,8 @@
 <?php
+namespace Classes;
+
+use PDO;
+use PDOException;
 
 class Cours_Tags
 {

@@ -11,14 +11,10 @@ try {
 
     if( $idRole == 3){
         $userInstance = new Admin($idUser, null, null, null, null,null);
-        $userInstance->bannerUser();
+        $userInstance->ActivieUser();
         header('Location: ../listEtudiants.php');
         exit;
     }
-
-       
-
-
    
 } catch (\PDOException $e) {
     echo "Database Error: " . $e->getMessage();

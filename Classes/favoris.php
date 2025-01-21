@@ -1,5 +1,6 @@
 <?php
-include_once __DIR__ . '/classes/DatabaseConnection.php';
+require_once '../../autoload.php'; 
+use Classes\DatabaseConnection;
 class Favorites {
     private $user_id;
     private $article_id;

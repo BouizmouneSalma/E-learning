@@ -1,7 +1,9 @@
 <?php
 
+namespace Classes;
 
-include_once __DIR__ . '/classes/DatabaseConnection.php';
+use Classes\DatabaseConnection;
+use PDO;
 abstract class Cours
 {
     protected $idCours;
@@ -11,65 +13,66 @@ abstract class Cours
     protected $enseignant_id;
     protected $type;
     protected $tags;
-
-    public function __construct($titre, $description, $categorie_id = null, $enseignant_id,$type,$tags)
-    {
+    public function __construct($titre, $description, $type, $tags, $enseignant_id, $categorie_id = null) {
         $this->titre = $titre;
         $this->description = $description;
-        $this->categorie_id = $categorie_id;
-        $this->enseignant_id = $enseignant_id;
         $this->type = $type;
         $this->tags = $tags;
+        $this->enseignant_id = $enseignant_id;
+        $this->categorie_id = $categorie_id;
     }
     public abstract function addCours();
 
     public static function ViewStatisticcours() {
         try {
             $pdo = DatabaseConnection::getInstance()->getConnection();
-            $query = "
-            SELECT COUNT(*) AS total_cours FROM cours
-        ";
-        
-        
+
+            $query = "SELECT COUNT(*) AS total_cours FROM cours";
             $stmt = $pdo->query($query);
-    
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            
+            $query_text = "SELECT COUNT(*) AS total_text_courses FROM cours WHERE type = 'text'";
+            $stmt_text = $pdo->query($query_text);
+            $result_text = $stmt_text->fetch(\PDO::FETCH_ASSOC);
+            
+            $query_video = "SELECT COUNT(*) AS total_video_courses FROM cours WHERE type = 'video'";
+            $stmt_video = $pdo->query($query_video);
+            $result_video = $stmt_video->fetch(\PDO::FETCH_ASSOC);
     
-            if ($result) {
-                return $result;
-            } else {
-                return [
-                    'total_cours' => 0
-                ];
-            }
+            return [
+                'total_cours' => $result['total_cours'] ?? 0,
+                'res_cours_text' => $result_text['total_text_courses'] ?? 0,
+                'res_cours_video' => $result_video['total_video_courses'] ?? 0
+            ];
         } catch (\PDOException $e) {
             echo "Error retrieving statistics: " . $e->getMessage();
             return false; 
         }
     }
+    
 
-    // public static function updateCours($idCours, $titre, $description, $contenu, $categorie_id,$type)
-    // {
-    //     try {
-    //         $pdo = DatabaseConnection::getInstance()->getConnection();
-    //         $sql = "UPDATE cours 
-    //                 SET titre = :titre, description = :description, contenu = :contenu, categorie_id = :categorie_id , type= :type
-    //                 WHERE idCours = :idCours";
-    //         $stmt = $pdo->prepare($sql);
+    public static function updateCours($idCours, $titre, $description, $contenu, $categorie_id,$type)
+    {
+        try {
+            $pdo = DatabaseConnection::getInstance()->getConnection();
+            $sql = "UPDATE cours 
+                    SET titre = :titre, description = :description, contenu = :contenu, categorie_id = :categorie_id , type= :type
+                    WHERE idCours = :idCours";
+            $stmt = $pdo->prepare($sql);
 
-    //         $stmt->bindParam(':idCours', $idCours, \PDO::PARAM_INT);
-    //         $stmt->bindParam(':titre', $titre, \PDO::PARAM_STR);
-    //         $stmt->bindParam(':description', $description, \PDO::PARAM_STR);
-    //         $stmt->bindParam(':contenu', $contenu, \PDO::PARAM_STR);
-    //         $stmt->bindParam(':categorie_id', $categorie_id, \PDO::PARAM_INT);
-    //         $stmt->bindParam(':type', $type);
+            $stmt->bindParam(':idCours', $idCours, \PDO::PARAM_INT);
+            $stmt->bindParam(':titre', $titre, \PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, \PDO::PARAM_STR);
+            $stmt->bindParam(':contenu', $contenu, \PDO::PARAM_STR);
+            $stmt->bindParam(':categorie_id', $categorie_id, \PDO::PARAM_INT);
+            $stmt->bindParam(':type', $type);
 
-    //         return $stmt->execute();
-    //     } catch (\PDOException $e) {
-    //         echo "Error updating cours: " . $e->getMessage();
-    //         return false;
-    //     }
-    // }
+            return $stmt->execute();
+        } catch (\PDOException $e) {
+            echo "Error updating cours: " . $e->getMessage();
+            return false;
+        }
+    }
 
     public static function deleteCours($idCours)
     {
@@ -222,6 +225,31 @@ public static function getTotalCoursesserch($searchQuery)
     }
 }
 
+//pour show all cours sur dashboard admin
+public static function ShowallCours()
+{
+    try {
+        $pdo = DatabaseConnection::getInstance()->getConnection();
+        $sql = "SELECT c.idCours, c.titre, c.description, c.type, c.categorie_id, c.enseignant_id, 
+                       ct.nom AS category, c.date_creation, 
+                       CONCAT(u.nom, ' ', u.prenom) AS fullname, 
+                       GROUP_CONCAT(t.nom SEPARATOR ', ') AS tags
+                FROM cours c
+                INNER JOIN users u ON u.idUser = c.enseignant_id
+                INNER JOIN categories ct ON c.categorie_id = ct.idCategory
+                LEFT JOIN cours_tags ctg ON ctg.cours_id = c.idCours
+                LEFT JOIN tags t ON t.idTag = ctg.tag_id
+                GROUP BY c.idCours, c.titre, c.description, c.type, c.categorie_id, c.enseignant_id, ct.nom, c.date_creation, u.nom, u.prenom
+                ORDER BY c.date_creation";        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    } catch (\PDOException $e) {
+        echo "Error fetching courses: " . $e->getMessage();
+        return false;
+    }
+}
 
 public static function getTotalCourses()
 {
