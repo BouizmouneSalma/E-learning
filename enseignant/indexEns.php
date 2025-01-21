@@ -1,3 +1,65 @@
+<?php
+session_start();
+require_once '../autoload.php';
+
+use Classes\Enseignant;
+use Classes\Inscription;
+use Classes\Cours_Text;
+use Classes\Cours;
+
+if (!isset($_SESSION['id_user']) || (isset($_SESSION['id_role']) && $_SESSION['id_role'] !== 2)) {
+    header("Location: ../index.php");
+    exit;
+}
+if(isset($_SESSION['id_user'])){
+  $teacherId=$_SESSION['id_user'];
+  $teacherfullname=$_SESSION['fullname'];
+}
+//pour statisitiqe 
+$statistiques=  Cours::staticCours($teacherId);
+//pour table des inscriptioins
+$inscription= new Inscription();
+$inscriptions = $inscription->getInscriptionsByTeacher($teacherId); 
+
+$enseignant = new Enseignant($_SESSION['id_user'], null, null, null, null);
+if (!$enseignant->validateStatus()) {
+  echo '
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          Swal.fire({
+              title: "<span style=\'font-size: 24px; color: #4c6ef5;\'>Account Under Review</span>",
+              html: `
+                  <div style="display: flex; align-items: center; gap: 20px;">
+                      <i class="fas fa-clock" style="font-size: 40px; color: #4c6ef5;"></i>
+                      <p style="font-size: 18px; color: #333333;">Your account is under review. Please wait for approval before accessing this page.</p>
+                  </div>
+              `,
+              icon: "info",
+              background: "#f1f5f9",
+              confirmButtonText: "Go to Homepage",
+              confirmButtonColor: "#4c6ef5",
+              showCloseButton: true,
+              allowOutsideClick: false,
+              customClass: {
+                  popup: "swal-popup-large",
+                  confirmButton: "swal-confirm-btn",
+              },
+              padding: "20px",
+              width: "600px",
+              heightAuto: true,
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = "../index.php"; 
+              }
+          });
+      });
+  </script>
+  ';
+  exit;
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,13 +69,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
     <title>index - Page</title>
+    
 </head>
 <body>
 <div class="min-h-screen bg-gray-50/50">
   <!-- Sidebar -->
   <aside class="bg-gradient-to-br from-gray-800 to-gray-900 fixed inset-y-0 left-0 transform -translate-x-full xl:translate-x-0 transition-transform duration-300 w-64 z-50 p-4 xl:w-72">
     <div class="flex justify-between items-center border-b border-white/20 pb-4">
-      <h6 class="text-white font-semibold text-lg">Youdemy</h6>
+    <a href="#"><img src="../assets/images/resources/logo-2.png" alt="" /></a>
       <button class="xl:hidden text-white focus:outline-none" id="sidebarToggle">
         <i class="fas fa-times"></i>
       </button>
@@ -39,19 +102,16 @@
             <span>Cours</span>
           </a>
         </li>
-        <li>
-          <a href="#" class="flex items-center gap-4 text-white py-2 px-4 rounded-lg hover:bg-gray-700">
-            <i class="fas fa-bell text-sm"></i>
-            <span>Notifications</span>
-          </a>
-        </li>
+       
       </ul>
       <div class="mt-8">
         <p class="text-sm uppercase text-gray-400 mb-4">Auth Pages</p>
-        <a href="#" class="flex items-center gap-4 text-white py-2 px-4 rounded-lg hover:bg-gray-700">
+        <form action="../logout.php" method="POST">
+        <button type="submit" name="submit"  class="flex items-center gap-4 text-white py-2 px-4 rounded-lg hover:bg-gray-700">
           <i class="fas fa-sign-out-alt text-sm"></i>
           <span>Log Out</span>
-        </a>
+      </button>
+        </form>
       </div>
     </nav>
   </aside>
@@ -72,8 +132,11 @@
     <!-- Content -->
     <div class="flex justify-between items-center mx-8">
         <div class="p-4">
-        <h1 class="text-2xl font-semibold text-gray-800 mb-4">Welcome to Home</h1>
-        <p class="text-gray-600">Manage your courses, students, and much more.</p>
+        <div class="enrolled-message bg-green-100 text-green-800 p-4 rounded-md shadow-md">
+                    <p>Welcome!  <strong class="font-bold text-black "><?= $teacherfullname ;?></strong> to Home</p>
+                    <p class="text-gray-600">Manage your courses, students, and much more.</p>
+
+        </div>
         </div>
         <div>
             <button class="p-2 bg-indigo-900 rounded-xl font-bold text-white">Rapport</button>
@@ -90,12 +153,12 @@
   <div class="p-4 text-right">
     <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total Etudients</p>
     <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+    <?php echo $statistiques['total_etudiants']; ?>
 
     </h4>
   </div>
   <div class="border-t border-blue-gray-50 p-4">
     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-      <strong class="text-green-500">+3%</strong>&nbsp;than last month
     </p>
   </div>
 </div>
@@ -108,11 +171,11 @@
   <div class="p-4 text-right">
     <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">New Etudients</p>
     <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+    <?php echo $statistiques['nouveaux_etudiants']; ?>
     </h4>
   </div>
   <div class="border-t border-blue-gray-50 p-4">
     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-      <strong class="text-red-500">-2%</strong>&nbsp;than yesterday
     </p>
   </div>
 </div>
@@ -130,12 +193,56 @@
   </div>
   <div class="border-t border-blue-gray-50 p-4">
     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-      <strong class="text-green-500">+5%</strong>&nbsp;than yesterday
     </p>
   </div>
 </div>
 </div>
-   
+<section>
+    <div class="p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Inscriptions</h1>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+                <thead class="bg-indigo-600 text-white">
+                    <tr>
+                        <th class="py-3 px-6 text-left">ID</th>
+                        <th class="py-3 px-6 text-left">Course Title</th>
+                        <th class="py-3 px-6 text-left">Course Description</th>
+                        <th class="py-3 px-6 text-left">Student</th>
+                        <th class="py-3 px-6 text-left">Date of Inscription</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <?php
+                    if ($inscriptions):
+                        foreach ($inscriptions as $index => $inscription):
+                    ?>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6"><?= $index + 1 ?></td>
+                        <td class="py-3 px-6"><?= htmlspecialchars($inscription['course_title']) ?></td>
+                        <td class="py-3 px-6"><?= htmlspecialchars(substr($inscription['course_description'], 0, 20)) ?><?= strlen($inscription['course_description']) > 20 ? '...' : '' ?>
+                        </td>
+                        <td class="py-3 px-6">
+                            <?= htmlspecialchars($inscription['student_name']) ?>
+                            <?= htmlspecialchars($inscription['student_surname']) ?>
+                        </td>
+                        <td class="py-3 px-6">
+                            <?= date("d M Y", strtotime($inscription['date_inscription'])) ?>
+                        </td>
+                    </tr>
+                    <?php
+                        endforeach;
+                    else:
+                    ?>
+                    <tr>
+                        <td colspan="5" class="py-6 text-center text-gray-500">No inscriptions found.</td>
+                    </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
    
   </div>
 </div>
