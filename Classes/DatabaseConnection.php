@@ -1,5 +1,6 @@
 <?php
 
+namespace Classes;
 
 class DatabaseConnection {
     private static $instance = null;
