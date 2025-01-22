@@ -11,7 +11,7 @@ class Cours_Text extends Cours
 
     public function __construct($titre, $description, $contenu , $categorie_id , $enseignant_id,$type,$tags)
     {
-        parent::__construct($titre, $description, $enseignant_id,$type,$tags, $categorie_id);
+        parent::__construct($titre, $description,$type,$tags, $enseignant_id, $categorie_id);
         $this->contenu = $contenu;
     }
 

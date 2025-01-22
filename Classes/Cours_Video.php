@@ -10,9 +10,9 @@ class Cours_Video extends Cours
 {
     private $contenu;
 
-    public function __construct($titre, $description, $categorie_id , $enseignant_id, $contenu,$type,$tags)
+    public function __construct($titre, $description, $categorie_id , $enseignant_id,$type ,$contenu,$tags)
     {
-        parent::__construct($titre, $description, $enseignant_id,$type,$tags, $categorie_id);
+        parent::__construct($titre, $description,$type,$tags, $enseignant_id, $categorie_id);
         $this->contenu = $contenu;
     }
    

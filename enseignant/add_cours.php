@@ -43,13 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitcours'])) {
         }
         $content = htmlspecialchars($_POST['contenuText']);
     }
-    if (empty($content)) {
-        echo "Error: Content is empty. Upload process failed.<br>";
-        exit;
-    }
+    
 
     if ($type === 'video') {
-        $course = new Cours_Video($title, $description, $category_id, $enseignant_id, $content, $type, $tags);
+        $course = new Cours_Video($title, $description, $category_id, $enseignant_id,  $type,$content, $tags);
     } else {
         $course = new Cours_Text($title, $description, $content, $category_id, $enseignant_id, $type, $tags);
     }
