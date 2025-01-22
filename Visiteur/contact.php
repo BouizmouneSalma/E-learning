@@ -134,7 +134,7 @@ session_start();
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="mailto:charafeddinetbibzat@gmail.com">charafeddinetbibzat@gmail.com</a></p>
+                                            <p><a href="mailto:salmabouizmoune@gmail.com">bouizmounesalma@gmail.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
@@ -279,7 +279,7 @@ session_start();
                             <span class="icon-message-1"></span>
                         </div>
                         <div class="contact-details-one__single-text">
-                            <h4><a href="mailto:charafeddinetbibzat@gmail.com">charafeddinetbibzat@gmail.com</a></h4>
+                            <h4><a href="mailto:salmabouizmoune@gmail.com">bouizmounesalma@gmail.com</a></h4>
                             <p>Send Email</p>
                         </div>
                     </div>

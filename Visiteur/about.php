@@ -129,7 +129,7 @@ session_start();
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="mailto:charafeddinetbibzat@gmail.com">charafeddinetbibzat@gmail.com</a></p>
+                                            <p><a href="mailto:salmabouizmoune@gmail.com">buizmounesalma@gmail.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
@@ -606,7 +606,7 @@ session_start();
                 <div class="col-xl-4 col-lg-4">
                     <div class="meet-teachers-one__single wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="meet-teachers-one__single-img">
-                            <img src="../assets/images/resources/charaf.png.jpg" alt=""/>
+                            <img src="../assets/images/resources/chaaf.png.jpg" alt=""/>
                         </div>
 
                         <div class="meet-teachers-one__single-content">

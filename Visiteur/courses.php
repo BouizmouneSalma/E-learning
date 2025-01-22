@@ -294,7 +294,7 @@ $categories = Categorie::showCategories();
                                         </div>
                                         <div class="text">
                                             <h6>Call Agent</h6>
-                                            <p><a href="mailto:charafeddinetbibzat@gmail.com">charafeddinetbibzat@gmail.com</a></p>
+                                            <p><a href="mailto:salmabouizmoune@gmail.com">ouizmounesalma@gmail.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
