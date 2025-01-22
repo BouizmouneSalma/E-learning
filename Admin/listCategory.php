@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addCategory'])) {
             $imageExtension = pathinfo($categoryImage['name'], PATHINFO_EXTENSION);
             $imageName = uniqid() . '.' . $imageExtension;
             $targetFile = $targetDir . $imageName;
-            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif' , 'webp'];
 
             if (!in_array(strtolower($imageExtension), $allowedExtensions)) {
                 throw new Exception('Invalid image type. Allowed types are: JPG, JPEG, PNG, GIF.');
@@ -171,40 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addCategory'])) {
                     <span>Add Category</span>
                 </a>
             </div>
-            <!-- insights-->
-            <!-- <ul class="insights grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-[24px] mt-[36px]">
-                <li>
-                    <i class="fa-solid fa-user-group"></i>
-                    <span class="info">
-                        <h3>
-                            <?php
-                            // echo $result['total_clients'];
-                            ?>
-                        </h3>
-                        <p>Clients</p>
-                    </span>
-                </li>
-                <li><i class="fa-solid fa-car-side"></i>
-                    <span class="info">
-                        <h3>
-                            <?php
-                            // echo $resultv['total_voitures'];
-                            ?>
-                        </h3>
-                        <p>Cars</p>
-                    </span>
-                </li>
-                <li><i class="fa-solid fa-file-signature"></i>
-                    <span class="info">
-                        <h3>
-                            <?php
-                            // echo $resultc['total_contrats'];
-                            ?>
-                        </h3>
-                        <p>Contrats</p>
-                    </span>
-                </li>
-            </ul> -->
+            
             <!---- data content ---->
             <div class="bottom-data flex flex-wrap gap-[24px] mt-[24px] w-full ">
                 <div class="orders  flex-grow flex-[1_0_500px]">
@@ -297,7 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addCategory'])) {
     </div>
 
     <div id="editForm" class="hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md max-h-[80vh] overflow-y-auto">
         <form action="./crud/edit_category.php" method="post" enctype="multipart/form-data" id="editCategoryForm" class="flex flex-col gap-4">
             <h2 class="text-xl font-semibold mb-4">Edit Category</h2>
             

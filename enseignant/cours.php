@@ -167,7 +167,7 @@ $tags=$tag->GetTags();
 </div>
 <!-- Add Course Modal -->
 <div id="addCourseModal" class="fixed inset-0 z-50 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
-  <div class="bg-white rounded-lg p-6 w-96 shadow-xl relative">
+  <div class="bg-white rounded-lg p-6 w-96 shadow-xl relative overflow-y-auto max-h-[80vh] ">
     <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.72 9.31l.003-.032.004-.032a5.5 5.5 0 00-9.67-3.425m5.663 3.457a5.501 5.501 0 11-.76 8.493m0-8.492V9.06M9.12 16.78l-.003.032a5.501 5.501 0 01-.174-.478M12 3.75V4.25M4.75 12H5.25M19.75 12h-.5M3.03 9.56l.707.707M20.96 9.56l-.707.707M3.03 14.44l.707-.707M20.96 14.44l-.707-.707M3.75 12a9.004 9.004 0 016.17-8.48" />
