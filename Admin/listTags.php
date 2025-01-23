@@ -167,7 +167,6 @@ $result = Tag::showstatic();
                 </div>
                 <a id="openAddTagsForm" href="#"
                     class="  report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
-                    <i class="fa-solid fa-car"></i>
                     <span>Add Tags</span>
                 </a>
             </div>

@@ -126,11 +126,6 @@ $result =  Cours::ViewStatisticcours();
                     </ul>
 
                 </div>
-                <a id="buttonadd" href="#"
-                    class="  report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
-                    <i class="fa-solid fa-car"></i>
-                    <span>Add Cours</span>
-                </a>
             </div>
             <!-- insights-->
             <ul class="insights grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-[24px] mt-[36px]">
@@ -163,21 +158,9 @@ $result =  Cours::ViewStatisticcours();
             <p>Video Courses</p>
         </span>
     </li>
-    <li class="flex flex-col items-center gap-3">
-        <div class="enrolled-message bg-green-100 text-green-800 p-4 rounded-md shadow-md w-full">
-            <p>Cours par Catégorie <strong class="font-bold text-black">
-                <?php echo isset($resultd['courses_per_category']) ? $resultd['courses_per_category'] : "No data available."; ?>
-            </strong></p>
-        </div>
-    </li>
+    
 
-    <li class="flex items-center gap-3">
-        <div class="enrolled-message bg-green-100 text-green-800 p-4 rounded-md shadow-md">
-            <p>Cours avec le Plus d'Étudiants <strong class="font-bold text-black">
-                <?php echo isset($resultd['course_with_most_students']) ? $resultd['course_with_most_students'] : "No data available."; ?>
-            </strong></p>
-        </div>
-    </li>
+   
 
 </ul>
 
@@ -239,126 +222,7 @@ $result =  Cours::ViewStatisticcours();
 
         </main>
     </div>
-    <div id="addClientForm"
-        class="add-client-form  fixed right-[-100%] rounded-xl w-full max-w-[400px] h-[580px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px] bg-white">
-        <form action="listCourse.php" method="POST" enctype="multipart/form-data"
-            class="flex flex-col gap-4 overflow-y-auto h-full p-6 pb-20" id="courseForm">
-            
-        <!-- Header -->
-        <div class="flex justify-between items-center">
-            <h2 class="text-2xl font-semibold flex items-center">
-                <i class="fas fa-book mr-2"></i> Add Course
-            </h2>
-            <button type="button" id="closeForm"
-                class="close-btn bg-red-500 text-white font-extrabold px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">
-                X
-            </button>
-        </div>
-
-        <!-- Dynamic Course Sections -->
-        <div id="addcoursForm">
-            <!-- Template for Course -->
-            <div class="add-cours-form border-b-2 pb-4 mb-4">
-                <h3 class="text-lg font-semibold mb-2">Course Details</h3>
-
-                <!-- Category -->
-                <div class="form-group flex flex-col">
-                    <label for="category" class="text-sm text-gray-700 mb-1">Category</label>
-                    <div class="flex items-center">
-                        <i class="fas fa-th-large text-gray-500 mr-2"></i>
-                        <select name="category" class="p-2 border border-gray-300 rounded-lg outline-none text-sm w-full">
-                            <?php
-                            try {
-                                $category = new Categorie(null, null, null,null);
-                                $resultCat = $category->showCategories();
-
-                                if ($resultCat) {
-                                    foreach ($resultCat as $cat) {
-                                        echo '<option class="text-black" value="' . htmlspecialchars($cat['id_category']) . '">' . htmlspecialchars($cat['nom']) . '</option>';
-                                    }
-                                } else {
-                                    echo '<option class="text-black" value="">No categories found</option>';
-                                }
-                            } catch (\PDOException $e) {
-                                echo '<option value="">Error loading categories</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Title -->
-                <div class="form-group flex flex-col">
-                    <label for="title" class="text-sm text-gray-700 mb-1">Course Title</label>
-                    <div class="flex items-center">
-                        <i class="fas fa-heading text-gray-500 mr-2"></i>
-                        <input name="title" type="text" id="title" placeholder="Enter course title"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm w-full" required>
-                    </div>
-                </div>
-
-                <!-- Description -->
-                <div class="form-group flex flex-col">
-                    <label for="description" class="text-sm text-gray-700 mb-1">Description</label>
-                    <div class="flex items-center">
-                        <i class="fas fa-pencil-alt text-gray-500 mr-2"></i>
-                        <textarea name="description" id="description" placeholder="Enter course description"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm w-full" required></textarea>
-                    </div>
-                </div>
-
-                <!-- Content Type -->
-                <div class="form-group flex flex-col">
-                    <label for="type" class="text-sm text-gray-700 mb-1">Content Type</label>
-                    <div class="flex items-center">
-                        <i class="fas fa-video text-gray-500 mr-2"></i>
-                        <select name="type" id="type"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm w-full">
-                            <option value="text">Text</option>
-                            <option value="video">Video</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Availability -->
-                <div class="form-group flex flex-col">
-                    <label for="availability" class="text-sm text-gray-700 mb-1">Availability</label>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-gray-500 mr-2"></i>
-                        <select name="availability" id="availability"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm w-full">
-                            <option value="available">Available</option>
-                            <option value="unavailable">Unavailable</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Instructor -->
-                <div class="form-group flex flex-col">
-                    <label for="instructor" class="text-sm text-gray-700 mb-1">Instructor</label>
-                    <div class="flex items-center">
-                        <i class="fas fa-chalkboard-teacher text-gray-500 mr-2"></i>
-                        <select name="" id="">
-
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group flex flex-col">
-                    <label for="coursvideo" class="text-sm text-gray-700 mb-1">Course Image</label>
-                    <div class="flex items-center">
-                        <i class="fas fa-image text-gray-500 mr-2"></i>
-                        <input type="file" name="coursvideo" multiple id="coursvideo" accept="image/*"
-                            class="p-2 border border-gray-300 rounded-lg outline-none text-sm w-full">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button type="submit" name="submitformaddcours"
-            class="submit-btn bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out mt-4">
-            <i class="fas fa-paper-plane mr-2"></i> Submit Course
-        </button>
-    </form>
+   
 </div>
 
 

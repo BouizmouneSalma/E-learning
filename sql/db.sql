@@ -57,16 +57,6 @@ CREATE TABLE cours_tags (
     FOREIGN KEY (tag_id) REFERENCES tags(idTag) ON DELETE CASCADE
 );
 
--- Table des favoris 
-CREATE TABLE favoris (
-    etudiant_id INT NOT NULL,
-    cours_id INT NOT NULL,
-    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (etudiant_id, cours_id),
-    FOREIGN KEY (etudiant_id) REFERENCES users(idUser) ON DELETE CASCADE,
-    FOREIGN KEY (cours_id) REFERENCES cours(idCours) ON DELETE CASCADE
-);
-
 -- Table des inscriptions 
 CREATE TABLE inscriptions (
     idInscription INT AUTO_INCREMENT PRIMARY KEY,
